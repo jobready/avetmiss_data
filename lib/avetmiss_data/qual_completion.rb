@@ -1,5 +1,4 @@
 class AvetmissData::QualCompletion < AvetmissData::Base
-
   self.file = 'NAT00130'
   self.file_format = {
     training_organisation_identifier: 0...10,

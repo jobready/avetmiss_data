@@ -1,5 +1,4 @@
 class AvetmissData::Enrolment < AvetmissData::Base
-
   self.file = 'NAT00120'
   self.file_format = {
     delivery_location_identifier: 0...10,
