@@ -14,3 +14,6 @@ notifications:
   on_failure: always
 script:
   - bundle exec rspec
+addons:
+  code_climate:
+    repo_token: 2a61bdd24e056cb4b413988835cbaca74c293838117a21da8a6258b36ec485e9

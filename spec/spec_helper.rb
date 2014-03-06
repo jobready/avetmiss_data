@@ -8,6 +8,12 @@
 require 'bundler/setup'
 Bundler.require(:default, :development)
 
+require 'simplecov'
+SimpleCov.start
+
+require 'codeclimate-test-reporter'
+CodeClimate::TestReporter.start
+
 require 'avetmiss_data'
 
 RSpec.configure do |config|
