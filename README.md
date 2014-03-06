@@ -3,7 +3,9 @@
 [![Build Status](https://magnum.travis-ci.com/jobready/avetmiss_data.png?token=rpAHEL3fvHDpfBeDNS3M&branch=develop)](https://magnum.travis-ci.com/jobready/avetmiss_data)
 [![Code Climate](https://codeclimate.com/repos/53169ebae30ba0581c007800/badges/63459af2a47ba777d79f/gpa.png)](https://codeclimate.com/repos/53169ebae30ba0581c007800/feed)
 
-This gem supports the parsing and unparsing of AVETMISS NAT data.
+This gem supports the parsing and exporting of AVETMISS (http://www.ncver.edu.au/) data.
+
+AVETMISS stands for the Australian Vocational Education and Training Management Information Statistical Standard. It is a national data standard that ensures consistent and accurate capture and reporting of VET information about students.
 
 ## Installation
 
