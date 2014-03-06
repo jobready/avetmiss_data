@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec', '~> 2.14'
   s.add_development_dependency 'factory_girl', '~> 4.4'
   s.add_development_dependency 'cane', '~> 2.6'
-  s.add_development_dependency 'simplecov', '~> 0.7.1'
+  s.add_development_dependency 'simplecov', '~> 0.7'
   s.add_development_dependency 'byebug', '~> 2.7'
   s.add_development_dependency 'rake', '~> 10.1'
   s.add_development_dependency 'codeclimate-test-reporter', '~> 0.3'
