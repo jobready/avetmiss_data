@@ -9,7 +9,7 @@ describe AvetmissData::UnitOfCompetency do
     end
 
     context 'NAT Record Parse' do
-      let!(:row) { 'MAE1         Academic English 1                                                                                  000000N0025' }
+      let!(:row) { File.open('spec/fixtures/nat_files/NAT00060.txt').first }
       subject { AvetmissData::UnitOfCompetency.parse(row) }
 
       specify { expect(subject).not_to be_blank }

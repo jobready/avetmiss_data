@@ -9,7 +9,7 @@ describe AvetmissData::Enrolment do
     end
 
     context 'NAT Record Parse' do
-      let!(:row) { "4712      12345     BSBCUS402A  UTE31206  160420131608201530700000134bc123     bc123     @@N70    0000Z               0000" }
+      let!(:row) { File.open('spec/fixtures/nat_files/NAT00120.txt').first }
       subject { AvetmissData::Enrolment.parse(row) }
 
       specify { expect(subject).not_to be_blank }

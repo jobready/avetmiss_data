@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe AvetmissData::Client do
-  context 'imports the NAT00010 file' do
+  context 'imports the NAT00080 file' do
 
     context 'NAT File' do
       specify { expect(AvetmissData::Client.file).not_to be_blank }
@@ -9,7 +9,7 @@ describe AvetmissData::Client do
     end
 
     context 'NAT Record Parse' do
-      let!(:row) { '12345     Franklin, Mount                                             091990M02091964285021201030012YYY Aarons Pass                                       ' }
+      let!(:row) { File.open('spec/fixtures/nat_files/NAT00080.txt').first }
       subject { AvetmissData::Client.parse(row) }
 
       specify { expect(subject).not_to be_blank }

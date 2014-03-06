@@ -9,7 +9,7 @@ describe AvetmissData::RtoDeliveryLocation do
     end
 
     context 'NAT Record Parse' do
-      let!(:row) { '01010     4707      Park View Motor Inn-Wangaratta                                                                      367702WANGARATTA                                        1101' }
+      let!(:row) { File.open('spec/fixtures/nat_files/NAT00020.txt').first }
       subject { AvetmissData::RtoDeliveryLocation.parse(row) }
 
       specify { expect(subject[:training_organisation_identifier]).to eq('01010') }

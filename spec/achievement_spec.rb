@@ -9,7 +9,7 @@ describe AvetmissData::Achievement do
     end
 
     context 'NAT Record Parse' do
-      let!(:row) { '12345     008' }
+      let!(:row) { File.open('spec/fixtures/nat_files/NAT00100.txt').first }
       subject { AvetmissData::Achievement.parse(row) }
 
       specify { expect(subject).not_to be_blank }

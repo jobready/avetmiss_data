@@ -9,7 +9,7 @@ describe AvetmissData::ClientPostalDetail do
     end
 
     context 'NAT Record Parse' do
-      let!(:row) { '12345     Mr  Mount                                   Franklin                                Some Steet                                                                                          Aarons Pass                                       2850010312121231                              0222222222          ritar@jobready.com.au                                                           ' }
+      let!(:row) { File.open('spec/fixtures/nat_files/NAT00085.txt').first }
       subject { AvetmissData::ClientPostalDetail.parse(row) }
 
       specify { expect(subject).not_to be_blank }

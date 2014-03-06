@@ -9,7 +9,7 @@ describe AvetmissData::QualCompletion do
     end
 
     context 'NAT Record Parse' do
-      let!(:row) { "01010     UTE31206  12345     2013Y" }
+      let!(:row) { File.open('spec/fixtures/nat_files/NAT00130.txt').first }
       subject { AvetmissData::QualCompletion.parse(row) }
 
       specify { expect(subject).not_to be_blank }

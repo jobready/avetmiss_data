@@ -9,7 +9,7 @@ describe AvetmissData::Rto do
     end
 
     context 'NAT Record Parse' do
-      let!(:row) { '01010     JobReady Solutions                                                                                  91Suite 203, 84 Alexander Street                                                                      Crows Nest                                        206501Kristina Peebles                                            0290185525          0211111111          prakritip@jobready.com.au                                                       ' }
+      let!(:row) { File.open('spec/fixtures/nat_files/NAT00010.txt').first }
       subject { AvetmissData::Rto.parse(row) }
 
       specify { expect(subject).not_to be_blank }
