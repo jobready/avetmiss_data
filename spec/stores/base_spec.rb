@@ -59,6 +59,11 @@ describe AvetmissData::Stores::Base do
       end
     end
 
+    context 'storing' do
+      let!(:store_base) { build :store_base, record: '12345abcdeLOL' }
+      specify { expect(store_base.to_record).to eq('12345abcdeLOL') }
+    end
+
     context '.max_record' do
       specify { expect(AvetmissData::Stores::Base.max_record).to eq(10) }
     end

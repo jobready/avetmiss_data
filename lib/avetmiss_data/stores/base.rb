@@ -1,10 +1,11 @@
 class AvetmissData::Stores::Base
-  class_attribute :file_format, :file_name
+  class_attribute :file_format, :file_name, :attrs
 
   def self.nat_file(file_name, mapping)
     self.file_name = file_name
     self.file_format = mapping
-    attr_accessor *mapping.keys
+    self.attrs = mapping.keys
+    attr_accessor *attrs
   end
 
   def initialize(record)
@@ -24,6 +25,10 @@ class AvetmissData::Stores::Base
 
   def self.max_record
     file_format.values.map { |(range, _)| range.last }.max
+  end
+
+  def to_record
+    self.class.to_record(Hash[attrs.map { |attr| [attr, send(attr)] }])
   end
 
   def self.to_record(values)

@@ -1,3 +1,4 @@
+# This is the overall package.
 class AvetmissData::Package
   attr_accessor :store_rtos
   attr_accessor :store_rto_delivery_locations
@@ -10,7 +11,7 @@ class AvetmissData::Package
   attr_accessor :store_enrolments
   attr_accessor :store_qual_completions
 
-  def initialize
+  def initialize(zip_file)
     @store_rtos = []
     @store_rto_delivery_locations = []
     @store_courses = []
@@ -22,4 +23,5 @@ class AvetmissData::Package
     @store_enrolments = []
     @store_qual_completions = []
   end
+
 end
