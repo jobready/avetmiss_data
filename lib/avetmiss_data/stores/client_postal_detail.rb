@@ -1,6 +1,5 @@
-class AvetmissData::ClientPostalDetail < AvetmissData::Base
-  self.file = 'NAT00085'
-  self.file_format = {
+class AvetmissData::Stores::ClientPostalDetail < AvetmissData::Stores::Base
+  nat_file('NAT00085', {
     client_identifier: 0...10,
     client_title: 10...14,
     client_first_name: 14...54,
@@ -15,5 +14,5 @@ class AvetmissData::ClientPostalDetail < AvetmissData::Base
     telephone_mobile: 290...310,
     email_address: 310...390,
     extras: 390..-1
-  }
+  })
 end

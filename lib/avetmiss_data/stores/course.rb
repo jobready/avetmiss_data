@@ -1,6 +1,5 @@
-class AvetmissData::Course < AvetmissData::Base
-  self.file = 'NAT00030'
-  self.file_format = {
+class AvetmissData::Stores::Course < AvetmissData::Stores::Base
+  nat_file('NAT00030', {
     qualification_identifier: 0...10,
     qualification_name: 10...110,
     nominal_hours: 110...114,
@@ -10,5 +9,5 @@ class AvetmissData::Course < AvetmissData::Base
     anzsco_identifier: 123...129,
     vet_flag: 129...130,
     extras: 130..-1
-  }
+  })
 end

@@ -1,5 +1,15 @@
-class AvetmissData::Base
-  class_attribute :file_format, :file
+class AvetmissData::Stores::Base
+  class_attribute :file_format, :file_name
+
+  def self.nat_file(file_name, mapping)
+    self.file_name = file_name
+    self.file_format = mapping
+    attr_accessor *mapping.keys
+  end
+
+  def initialize(record)
+    self.class.parse(record).each_pair { |attr, value| send("#{attr}=", value) }
+  end
 
   def file_format_hash
     self.class.file_format

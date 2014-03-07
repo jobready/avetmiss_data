@@ -1,25 +1,24 @@
 require 'spec_helper'
 
-describe AvetmissData::Base do
-  let!(:base) { build :base }
-
+describe AvetmissData::Stores::Base do
   context '#file_format_hash' do
-    before { AvetmissData::Base.file_format = {} }
-    specify { expect(base.file_format_hash).not_to be_nil }
+    let(:store_base) { build :store_base }
+    before { AvetmissData::Stores::Base.nat_file("", {}) }
+    specify { expect(store_base.file_format).not_to be_nil }
   end
 
   context 'reading/writing' do
     before do
-      AvetmissData::Base.file_format = {
+      AvetmissData::Stores::Base.nat_file("", {
         foo: 0...5,
         bar: 5...10,
         baz: 10..-1
-      }
+      })
     end
 
     context '.parse' do
       specify do
-        expect(AvetmissData::Base.parse('12345abcdeLOL')).to eq(
+        expect(AvetmissData::Stores::Base.parse('12345abcdeLOL')).to eq(
           foo: '12345',
           bar: 'abcde',
           baz: 'LOL'
@@ -27,7 +26,7 @@ describe AvetmissData::Base do
       end
 
       specify do
-        expect(AvetmissData::Base.parse('1 3  ab   LOL')).to eq(
+        expect(AvetmissData::Stores::Base.parse('1 3  ab   LOL')).to eq(
           foo: '1 3',
           bar: 'ab',
           baz: 'LOL'
@@ -35,7 +34,7 @@ describe AvetmissData::Base do
       end
 
       specify do
-        expect(AvetmissData::Base.parse(' 23 5   deLOL')).to eq(
+        expect(AvetmissData::Stores::Base.parse(' 23 5   deLOL')).to eq(
           foo: '23 5',
           bar: 'de',
           baz: 'LOL'
@@ -43,7 +42,7 @@ describe AvetmissData::Base do
       end
 
       specify do
-        expect(AvetmissData::Base.parse('12345abcde')).to eq(
+        expect(AvetmissData::Stores::Base.parse('12345abcde')).to eq(
           foo: '12345',
           bar: 'abcde',
           baz: ''
@@ -51,13 +50,22 @@ describe AvetmissData::Base do
       end
     end
 
+    context 'loading' do
+      let!(:store_base) { build :store_base, record: '12345abcdeLOL' }
+      specify do
+        expect(store_base.foo).to eq('12345')
+        expect(store_base.bar).to eq('abcde')
+        expect(store_base.baz).to eq('LOL')
+      end
+    end
+
     context '.max_record' do
-      specify { expect(AvetmissData::Base.max_record).to eq(10) }
+      specify { expect(AvetmissData::Stores::Base.max_record).to eq(10) }
     end
 
     context '.to_record' do
       specify do
-        expect(AvetmissData::Base.to_record(
+        expect(AvetmissData::Stores::Base.to_record(
           foo: '12345',
           bar: 'abcde',
           baz: 'LOL'
@@ -65,7 +73,7 @@ describe AvetmissData::Base do
       end
 
       specify do
-        expect(AvetmissData::Base.to_record(
+        expect(AvetmissData::Stores::Base.to_record(
           foo: '12 3 ',
           bar: 'a  de',
           baz: 'L L'
@@ -73,7 +81,7 @@ describe AvetmissData::Base do
       end
 
       specify do
-        expect(AvetmissData::Base.to_record(
+        expect(AvetmissData::Stores::Base.to_record(
           foo: '  345',
           bar: '  c e',
           baz: ' OL'
@@ -81,7 +89,7 @@ describe AvetmissData::Base do
       end
 
       specify do
-        expect(AvetmissData::Base.to_record(
+        expect(AvetmissData::Stores::Base.to_record(
           foo: '12345',
           bar: 'abcde',
           baz: 'LOL',
@@ -90,7 +98,7 @@ describe AvetmissData::Base do
       end
 
       specify do
-        expect(AvetmissData::Base.to_record(
+        expect(AvetmissData::Stores::Base.to_record(
           foo: '12345',
           baz: 'LOL'
         )).to eq('12345     LOL')

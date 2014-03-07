@@ -1,6 +1,5 @@
-class AvetmissData::Enrolment < AvetmissData::Base
-  self.file = 'NAT00120'
-  self.file_format = {
+class AvetmissData::Stores::Enrolment < AvetmissData::Stores::Base
+  nat_file('NAT00120', {
     delivery_location_identifier: 0...10,
     client_identifier: 10...20,
     unit_competency_identifier: 20...32,
@@ -19,5 +18,5 @@ class AvetmissData::Enrolment < AvetmissData::Base
     training_organisation_outcome_identifier: 92...96,
     state_training_authority_funding_source: 96...99,
     extras: 99..-1
-  }
+  })
 end

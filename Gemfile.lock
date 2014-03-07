@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    avetmiss_data (1.0.0)
+    avetmiss_data (0.0.1)
       activesupport (= 3.2.17)
 
 GEM
@@ -51,4 +51,4 @@ DEPENDENCIES
   factory_girl (~> 4.4)
   rake (~> 10.1)
   rspec (~> 2.14)
-  simplecov (~> 0.7.1)
+  simplecov (~> 0.7)

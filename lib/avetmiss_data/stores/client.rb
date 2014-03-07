@@ -1,6 +1,5 @@
-class AvetmissData::Client < AvetmissData::Base
-  self.file = 'NAT00080'
-  self.file_format = {
+class AvetmissData::Stores::Client < AvetmissData::Stores::Base
+  nat_file('NAT00080', {
     client_identifier: 0...10,
     name_for_encryption: 10...70,
     highest_school_level_completed: 70...72,
@@ -18,5 +17,5 @@ class AvetmissData::Client < AvetmissData::Base
     english_proficiency_identifier: 103...104,
     address_location: 104...154,
     extras: 154..-1
-  }
+  })
 end
