@@ -1,6 +1,7 @@
 # AVETMISS Data
 
 [![Build Status](https://magnum.travis-ci.com/jobready/avetmiss_data.png?token=rpAHEL3fvHDpfBeDNS3M&branch=develop)](https://magnum.travis-ci.com/jobready/avetmiss_data)
+[![Coverage Status](https://coveralls.io/repos/jobready/avetmiss_data/badge.png)](https://coveralls.io/r/jobready/avetmiss_data)
 [![Code Climate](https://codeclimate.com/github/jobready/avetmiss_data.png)](https://codeclimate.com/github/jobready/avetmiss_data)
 
 This gem supports the parsing and exporting of AVETMISS (http://www.ncver.edu.au/) data.
