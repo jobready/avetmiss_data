@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'byebug', '~> 2.7'
   s.add_development_dependency 'rake', '~> 10.1'
   s.add_development_dependency 'codeclimate-test-reporter', '~> 0.3'
+  s.add_development_dependency 'coveralls'
   s.add_dependency 'activesupport', '3.2.17'
 
   s.files        = `git ls-files`.split("\n")
