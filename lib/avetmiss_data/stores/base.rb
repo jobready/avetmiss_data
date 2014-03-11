@@ -1,30 +1,32 @@
 class AvetmissData::Stores::Base
-  class_attribute :file_format, :file_name, :attrs
+  class_attribute :file_name, :attrs
+  attr_accessor :attributes
 
   def self.nat_file(file_name, mapping)
+    self.parser = AvetmissData::Parser.new(mapping)
     self.file_name = file_name
-    self.file_format = mapping
     self.attrs = mapping.keys
     attr_accessor *attrs
   end
 
-  def initialize(record)
-    self.class.parse(record).each_pair { |attr, value| send("#{attr}=", value) }
+  def initialize(record=nil)
+    self.attributes = parser.parse(record).attributes if record
   end
 
   def file_format_hash
-    self.class.file_format
+    parser.file_format
   end
 
-  def self.parse(record)
-    Hash[file_format.map do |attr, range|
-      value = record[range].try(:strip)
-      [attr, value]
-    end]
+  def attributes=(record)
+    @attributes = record
+
+    record.each_pair do |attr, value|
+      send("#{attr}=", value)
+    end
   end
 
   def self.max_record
-    file_format.values.map { |(range, _)| range.last }.max
+    file_format_hash.values.map { |(range, _)| range.last }.max
   end
 
   def to_record
