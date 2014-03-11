@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 describe AvetmissData::Stores::Base do
-  context '#file_format_hash' do
-    let(:store_base) { build :store_base }
-    before { AvetmissData::Stores::Base.nat_file("", {}) }
-    specify { expect(store_base.file_format).not_to be_nil }
+  context '.nat_file' do
+    let(:store_base) { AvetmissData::Stores::Base.new }
+    before { AvetmissData::Stores::Base.nat_file('TEST', {}) }
+    specify { expect(store_base.file_name).to eq('TEST') }
   end
 
   context 'reading/writing' do
@@ -16,42 +16,48 @@ describe AvetmissData::Stores::Base do
       })
     end
 
-    context '.parse' do
+    let!(:attrs_set) do
+      {
+        foo: '12345',
+        bar: 'abcde',
+        baz: 'LOL'
+      }
+    end
+
+    context '#attributes' do
+      let!(:store_base) { AvetmissData::Stores::Base.new(attrs_set) }
       specify do
-        expect(AvetmissData::Stores::Base.parse('12345abcdeLOL')).to eq(
+        expect(store_base.attributes).to eq(
           foo: '12345',
           bar: 'abcde',
           baz: 'LOL'
-        )
-      end
-
-      specify do
-        expect(AvetmissData::Stores::Base.parse('1 3  ab   LOL')).to eq(
-          foo: '1 3',
-          bar: 'ab',
-          baz: 'LOL'
-        )
-      end
-
-      specify do
-        expect(AvetmissData::Stores::Base.parse(' 23 5   deLOL')).to eq(
-          foo: '23 5',
-          bar: 'de',
-          baz: 'LOL'
-        )
-      end
-
-      specify do
-        expect(AvetmissData::Stores::Base.parse('12345abcde')).to eq(
-          foo: '12345',
-          bar: 'abcde',
-          baz: ''
         )
       end
     end
 
-    context 'loading' do
-      let!(:store_base) { build :store_base, record: '12345abcdeLOL' }
+    context 'sets attributes' do
+      context 'attributes=' do
+        let!(:store_base) { AvetmissData::Stores::Base.new }
+        before { store_base.attributes = attrs_set }
+        specify do
+          expect(store_base.foo).to eq('12345')
+          expect(store_base.bar).to eq('abcde')
+          expect(store_base.baz).to eq('LOL')
+        end
+      end
+
+      context 'on init' do
+        let!(:store_base) { AvetmissData::Stores::Base.new(attrs_set) }
+        specify do
+          expect(store_base.foo).to eq('12345')
+          expect(store_base.bar).to eq('abcde')
+          expect(store_base.baz).to eq('LOL')
+        end
+      end
+    end
+
+    context '.from_line' do
+      let!(:store_base) { AvetmissData::Stores::Base.from_line('12345abcdeLOL') }
       specify do
         expect(store_base.foo).to eq('12345')
         expect(store_base.bar).to eq('abcde')
@@ -60,55 +66,8 @@ describe AvetmissData::Stores::Base do
     end
 
     context 'storing' do
-      let!(:store_base) { build :store_base, record: '12345abcdeLOL' }
-      specify { expect(store_base.to_record).to eq('12345abcdeLOL') }
-    end
-
-    context '.max_record' do
-      specify { expect(AvetmissData::Stores::Base.max_record).to eq(10) }
-    end
-
-    context '.to_record' do
-      specify do
-        expect(AvetmissData::Stores::Base.to_record(
-          foo: '12345',
-          bar: 'abcde',
-          baz: 'LOL'
-        )).to eq('12345abcdeLOL')
-      end
-
-      specify do
-        expect(AvetmissData::Stores::Base.to_record(
-          foo: '12 3 ',
-          bar: 'a  de',
-          baz: 'L L'
-        )).to eq('12 3 a  deL L')
-      end
-
-      specify do
-        expect(AvetmissData::Stores::Base.to_record(
-          foo: '  345',
-          bar: '  c e',
-          baz: ' OL'
-        )).to eq('  345  c e OL')
-      end
-
-      specify do
-        expect(AvetmissData::Stores::Base.to_record(
-          foo: '12345',
-          bar: 'abcde',
-          baz: 'LOL',
-          cool: 'bananas'
-        )).to eq('12345abcdeLOL')
-      end
-
-      specify do
-        expect(AvetmissData::Stores::Base.to_record(
-          foo: '12345',
-          baz: 'LOL'
-        )).to eq('12345     LOL')
-      end
+      let!(:store_base) { AvetmissData::Stores::Base.new(attrs_set) }
+      specify { expect(store_base.to_line).to eq('12345abcdeLOL') }
     end
   end
-
 end

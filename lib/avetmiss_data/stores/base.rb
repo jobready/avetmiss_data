@@ -1,43 +1,33 @@
 class AvetmissData::Stores::Base
-  class_attribute :file_name, :attrs
-  attr_accessor :attributes
+  class_attribute :file_name, :parser, :builder, :attribute_names
 
   def self.nat_file(file_name, mapping)
-    self.parser = AvetmissData::Parser.new(mapping)
     self.file_name = file_name
-    self.attrs = mapping.keys
-    attr_accessor *attrs
+    self.parser = AvetmissData::Parser.new(mapping)
+    self.builder = AvetmissData::Builder.new(mapping)
+    self.attribute_names = mapping.keys
+    attr_accessor *attribute_names
   end
 
-  def initialize(record=nil)
-    self.attributes = parser.parse(record).attributes if record
+  def self.from_line(line)
+    new(parser.parse(line))
   end
 
-  def file_format_hash
-    parser.file_format
+  def initialize(attributes = {})
+    self.attributes = attributes
   end
 
-  def attributes=(record)
-    @attributes = record
+  def attributes
+    Hash[self.attribute_names.map { |attr| [attr, send(attr)] }]
+  end
 
-    record.each_pair do |attr, value|
+  def attributes=(attributes)
+    attributes.each_pair do |attr, value|
       send("#{attr}=", value)
     end
   end
 
-  def self.max_record
-    file_format_hash.values.map { |(range, _)| range.last }.max
-  end
-
-  def to_record
-    self.class.to_record(Hash[attrs.map { |attr| [attr, send(attr)] }])
-  end
-
-  def self.to_record(values)
-    str = ' ' * max_record
-    file_format.each_pair do |attr, (range, _)|
-      str[range] = values[attr].to_s.ljust(range.last - range.first, ' ')
-    end
-    str
+  def to_line
+    builder.build(attributes)
   end
 end

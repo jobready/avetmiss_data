@@ -9,8 +9,8 @@ describe AvetmissData::Stores::UnitOfCompetency do
     end
 
     context 'NAT Record Parse' do
-      let!(:record) { File.open('spec/fixtures/nat_files/NAT00060.txt').first }
-      subject { build :store_unit_of_competency, record: record }
+      let!(:line) { File.open('spec/fixtures/nat_files/NAT00060.txt').first }
+      subject { AvetmissData::Stores::UnitOfCompetency.from_line(line) }
 
       specify { expect(subject).not_to be_blank }
       specify { expect(subject.unit_competency_flag).to eq('M') }

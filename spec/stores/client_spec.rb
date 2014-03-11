@@ -9,8 +9,8 @@ describe AvetmissData::Stores::Client do
     end
 
     context 'NAT Record Parse' do
-      let!(:record) { File.open('spec/fixtures/nat_files/NAT00080.txt').first }
-      subject { build :store_client, record: record }
+      let!(:line) { File.open('spec/fixtures/nat_files/NAT00080.txt').first }
+      subject { AvetmissData::Stores::Client.from_line(line) }
 
       specify { expect(subject).not_to be_blank }
       specify { expect(subject.client_identifier).to eq('12345') }

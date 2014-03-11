@@ -1,6 +1,6 @@
 FactoryGirl.define do
   trait :has_record_init do
-    initialize_with { new(attributes.delete(:record)) }
+    initialize_with { new(attributes.key?(:attributes) ? attributes.delete(:attributes) : {}) }
   end
 
   factory :store_base, class: 'AvetmissData::Stores::Base', traits: [:has_record_init]

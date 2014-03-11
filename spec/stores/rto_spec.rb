@@ -9,8 +9,8 @@ describe AvetmissData::Stores::Rto do
     end
 
     context 'NAT Record Parse' do
-      let!(:record) { File.open('spec/fixtures/nat_files/NAT00010.txt').first }
-      subject { build :store_rto, record: record }
+      let!(:line) { File.open('spec/fixtures/nat_files/NAT00010.txt').first }
+      subject { AvetmissData::Stores::Rto.from_line(line) }
 
       specify { expect(subject).not_to be_blank }
       specify { expect(subject.training_organisation_identifier).to eq('01010') }

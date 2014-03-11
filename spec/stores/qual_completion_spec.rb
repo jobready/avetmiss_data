@@ -9,8 +9,8 @@ describe AvetmissData::Stores::QualCompletion do
     end
 
     context 'NAT Record Parse' do
-      let!(:record) { File.open('spec/fixtures/nat_files/NAT00130.txt').first }
-      subject { build :store_qual_completion, record: record }
+      let!(:line) { File.open('spec/fixtures/nat_files/NAT00130.txt').first }
+      subject { AvetmissData::Stores::QualCompletion.from_line(line) }
 
       specify { expect(subject).not_to be_blank }
       specify { expect(subject.training_organisation_identifier).to eq('01010') }
