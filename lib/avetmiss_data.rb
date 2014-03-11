@@ -1,4 +1,5 @@
 require 'active_support/all'
+require 'zipruby'
 
 module AvetmissData
   module AvetmissData::Stores
