@@ -5,6 +5,7 @@ module AvetmissData
   end
 end
 
+require 'avetmiss_data/zip_file'
 require 'avetmiss_data/package'
 require 'avetmiss_data/stores/base'
 require 'avetmiss_data/stores/rto'
