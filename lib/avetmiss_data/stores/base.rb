@@ -1,5 +1,6 @@
 class AvetmissData::Stores::Base
   class_attribute :file_name, :parser, :builder, :attribute_names
+  attr_accessor :line_number, :package
 
   def self.nat_file(file_name, mapping)
     self.file_name = file_name
@@ -9,8 +10,12 @@ class AvetmissData::Stores::Base
     attr_accessor *attribute_names
   end
 
-  def self.from_line(line)
-    new(parser.parse(line))
+  def self.file_name_to_store(file_name)
+    AvetmissData::Stores::Base.subclasses.find { |store| store.file_name == file_name.to_s }
+  end
+
+  def self.from_line(line, line_number = 0, package = nil)
+    new(parser.parse(line).merge(line_number: line_number, package: package))
   end
 
   def initialize(attributes = {})
@@ -30,4 +35,40 @@ class AvetmissData::Stores::Base
   def to_line
     builder.build(attributes)
   end
+
+  def self.store_finder(kind, self_atttribute, foreign_attribute = self_atttribute)
+    # This is an example of what the define_method calls do:
+    # store_finder :rto_delivery_location, 'delivery_location_identifier',
+    #  'training_organisation_delivery_location_identifier'
+
+    # def rto_delivery_location_store
+    #   package.rto_delivery_location_stores.find { |store| store.training_organisation_delivery_location_identifier
+    #    == self.delivery_location_identifier
+    # end
+    define_method("#{kind}_store") do
+      return nil unless package
+      self_value = send(self_atttribute)
+      package.send("#{kind}_stores").find { |store| store.send(foreign_attribute) == self_value }
+    end
+
+    # def rto_delivery_location_store_exists?
+    #   rto_delivery_location_store.exists?
+    # end
+    define_method("#{kind}_store_exists?") do
+      send("#{kind}_store").present?
+    end
+  end
+
+  store_finder :rto, 'training_organisation_identifier'
+  store_finder :rto_delivery_location, 'delivery_location_identifier',
+             'training_organisation_delivery_location_identifier'
+  store_finder :course, 'qualification_identifier'
+  store_finder :unit_of_competency, 'unit_competency_identifier'
+  store_finder :client, 'client_identifier'
+  store_finder :client_postal_detail, 'client_identifier'
+  store_finder :disability, 'client_identifier'
+  store_finder :achievement, 'client_identifier'
+  store_finder :enrolment, 'client_identifier'
+  store_finder :qual_completion, 'client_identifier'
+
 end

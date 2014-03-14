@@ -24,4 +24,17 @@ describe AvetmissData::Stores::Rto do
       specify { expect(subject.extras).not_to be_blank }
     end
   end
+
+  context 'invalid record' do
+    let!(:line) { File.open('spec/fixtures/nat_files/NAT00010_invalid.txt').first }
+    subject { AvetmissData::Stores::Rto.from_line(line) }
+    specify { expect(subject).not_to be_blank }
+  end
+
+  context 'record with data collection fields' do
+    let!(:line) { File.open('spec/fixtures/nat_files/NAT00010_extrafields.txt').first }
+    subject { AvetmissData::Stores::Rto.from_line(line) }
+    specify { expect(subject).not_to be_blank }
+    specify { expect(subject.extras).not_to be_blank }
+  end
 end

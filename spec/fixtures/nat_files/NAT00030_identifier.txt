@@ -1,0 +1,14 @@
+AUR20505  Certificate II Automotive Vehicle Servicing (Light Vehicle)                                         000011XXX0305899916N
+AUR30308  Certificate III in Automotive Electrical Technology                                                 0000125140305321111Y
+AUR30405  Certificate III in Automotive Mechanical Technology (Light Vehicle)                                 0000135143050320000Y
+BSB20107  Certificate II Business                                                                             00001415210803599999Y
+BSB30110  Certificate III in Business                                                                         0000155140809531111Y
+BSB40207  Certificate IV Business                                                                             0000175110803512000Y
+BSB40807  Certificate IV Frontline Management                                                                 0000125110803512111Y
+BSB51107  Diploma of Management                                                                               0000114210803132000Y
+SIR30207  Certificate III Retail                                                                              0000125140805621511Y
+SIS30210  Certificate III in Community Activity Programs                                                      0000115140921411711Y
+SIT30707  Certificate III Hospitality                                                                         0000125141101430000Y
+SIT30807  Certificate III in Hospitality (Commercial Cookery)                                                 0000115141101351411Y
+TAE40110  Certificate IV in Training and Assessment                                                           0000115110799223311Y
+TLI31210  Certificate III in Driving Operations                                                               0000115140305733111Y
