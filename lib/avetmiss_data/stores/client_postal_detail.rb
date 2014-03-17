@@ -15,4 +15,6 @@ class AvetmissData::Stores::ClientPostalDetail < AvetmissData::Stores::Base
     email_address: 310...390,
     extras: 390..-1
   })
+
+  alias_method :identifier, :client_identifier
 end

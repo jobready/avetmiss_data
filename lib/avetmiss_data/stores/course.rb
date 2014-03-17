@@ -10,4 +10,6 @@ class AvetmissData::Stores::Course < AvetmissData::Stores::Base
     vet_flag: 129...130,
     extras: 130..-1
   })
+
+  alias_method :identifier, :qualification_identifier
 end

@@ -8,4 +8,6 @@ class AvetmissData::Stores::UnitOfCompetency < AvetmissData::Stores::Base
     nominal_hours: 120...124,
     extras: 124..-1
   })
+
+  alias_method :identifier, :unit_competency_identifier
 end

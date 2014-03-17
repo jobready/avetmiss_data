@@ -9,4 +9,6 @@ class AvetmissData::Stores::RtoDeliveryLocation < AvetmissData::Stores::Base
     country_identifier: 176...180,
     extras: 180..-1
   })
+
+  alias_method :identifier, :training_organisation_identifier
 end

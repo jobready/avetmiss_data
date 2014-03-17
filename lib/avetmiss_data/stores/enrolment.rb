@@ -19,4 +19,6 @@ class AvetmissData::Stores::Enrolment < AvetmissData::Stores::Base
     state_training_authority_funding_source: 96...99,
     extras: 99..-1
   })
+
+  alias_method :identifier, :client_identifier
 end

@@ -7,4 +7,6 @@ class AvetmissData::Stores::QualCompletion < AvetmissData::Stores::Base
     qualification_issued_flag: 34...35,
     extras: 35..-1
   })
+
+  alias_method :identifier, :client_identifier
 end

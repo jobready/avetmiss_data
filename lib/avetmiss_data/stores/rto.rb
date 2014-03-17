@@ -10,4 +10,6 @@ class AvetmissData::Stores::Rto < AvetmissData::Stores::Base
     state_identifier: 266...268,
     extras: 268..-1
   })
+
+  alias_method :identifier, :training_organisation_identifier
 end

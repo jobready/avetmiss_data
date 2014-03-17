@@ -18,4 +18,6 @@ class AvetmissData::Stores::Client < AvetmissData::Stores::Base
     address_location: 104...154,
     extras: 154..-1
   })
+
+  alias_method :identifier, :client_identifier
 end
