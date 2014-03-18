@@ -8,8 +8,8 @@
 require 'simplecov'
 SimpleCov.start
 
-require 'codeclimate-test-reporter'
-CodeClimate::TestReporter.start
+require 'coveralls'
+Coveralls.wear!
 
 require 'bundler/setup'
 Bundler.require(:default, :development)
