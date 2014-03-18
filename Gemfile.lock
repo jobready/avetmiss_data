@@ -16,7 +16,7 @@ GEM
       debugger-linecache (~> 1.2)
     cane (2.6.1)
       parallel
-    codeclimate-test-reporter (0.2.0)
+    codeclimate-test-reporter (0.3.0)
       simplecov (>= 0.7.1, < 1.0.0)
     columnize (0.3.6)
     debugger-linecache (1.2.0)
@@ -51,7 +51,7 @@ DEPENDENCIES
   bundler (~> 1.0)
   byebug (~> 2.7)
   cane (~> 2.6)
-  codeclimate-test-reporter (= 0.2.0)
+  codeclimate-test-reporter (~> 0.3)
   factory_girl (~> 4.4)
   rake (~> 10.1)
   rspec (~> 2.14)

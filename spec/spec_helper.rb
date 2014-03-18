@@ -5,16 +5,14 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
-require 'bundler/setup'
-Bundler.require(:default, :development)
-
 require 'simplecov'
 SimpleCov.start
 
 require 'codeclimate-test-reporter'
 CodeClimate::TestReporter.start
 
-require 'avetmiss_data'
+require 'bundler/setup'
+Bundler.require(:default, :development)
 
 RSpec.configure do |config|
   config.treat_symbols_as_metadata_keys_with_true_values = true
