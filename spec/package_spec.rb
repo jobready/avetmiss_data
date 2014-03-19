@@ -3,6 +3,12 @@ require 'spec_helper'
 describe AvetmissData::Package do
   let!(:package) { AvetmissData::Package.new }
 
+  context '<<' do
+    let!(:enrolment_store) { AvetmissData::Stores::Enrolment.new }
+    before { package.enrolment_stores << enrolment_store }
+    specify { expect(enrolment_store.package).to eq(package) }
+  end
+
   context 'create package' do
     before do
       package.enrolment_stores << AvetmissData::Stores::Enrolment.new(unit_competency_identifier: 'BSBRES401A',
@@ -50,5 +56,12 @@ describe AvetmissData::Package do
     specify { expect(enrolment_store.unit_competency_identifier).to eq('BSBRES401A') }
 
     specify { expect(package.client_stores.first.package).to eq(package) }
+  end
+
+  context '#stores_list_for' do
+    let(:client_store) { AvetmissData::Stores::Client.new }
+    subject { package.store_list_for(client_store) }
+    specify { expect(subject).to equal(package.client_stores) }
+    specify { expect(subject).not_to equal(package.enrolment_stores) }
   end
 end

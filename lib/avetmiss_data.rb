@@ -1,12 +1,15 @@
 require 'active_support/all'
 require 'zipruby'
 
+require 'set'
+
 module AvetmissData
   module AvetmissData::Stores
   end
 end
 
 require 'avetmiss_data/zip_file'
+require 'avetmiss_data/stores_list'
 require 'avetmiss_data/package'
 require 'avetmiss_data/parser'
 require 'avetmiss_data/builder'

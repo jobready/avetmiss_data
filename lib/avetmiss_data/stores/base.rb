@@ -14,8 +14,8 @@ class AvetmissData::Stores::Base
     AvetmissData::Stores::Base.subclasses.find { |store| store.file_name == file_name.to_s }
   end
 
-  def self.from_line(line, line_number = 0, package = nil)
-    new(parser.parse(line).merge(line_number: line_number, package: package))
+  def self.from_line(line, line_number = 0)
+    new(parser.parse(line).merge(line_number: line_number))
   end
 
   def initialize(attributes = {})
@@ -34,6 +34,13 @@ class AvetmissData::Stores::Base
 
   def to_line
     builder.build(attributes)
+  end
+
+  def package=(package)
+    @package = package
+    store_list = package.store_list_for(self)
+    (store_list << self) unless store_list.include?(self)
+    @package
   end
 
   def self.store_finder(kind, self_atttribute, foreign_attribute = self_atttribute)

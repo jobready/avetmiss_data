@@ -1,9 +1,8 @@
 class AvetmissData::ZipFile
-  attr_accessor :path, :package
+  attr_accessor :path
 
-  def initialize(path, package = nil)
+  def initialize(path)
     @path = path
-    @package = package
   end
 
   def read_archive
@@ -14,9 +13,9 @@ class AvetmissData::ZipFile
     end
   end
 
-  def build_stores(file_name, lines, package)
+  def build_stores(file_name, lines)
     store_klass = AvetmissData::Stores::Base.file_name_to_store(file_name)
-    lines.map.each_with_index { |line, i| store_klass.from_line(line, i + 1, package) }
+    lines.map.each_with_index { |line, i| store_klass.from_line(line, i + 1) }
   end
 
   def stores
@@ -26,7 +25,7 @@ class AvetmissData::ZipFile
       next unless content
 
       name = file.name.gsub(/\.txt$/, '')
-      @stores[name] = build_stores(name, content.lines, package)
+      @stores[name] = build_stores(name, content.lines)
     end
     @stores
   end
