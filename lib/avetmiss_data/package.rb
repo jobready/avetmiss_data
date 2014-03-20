@@ -81,6 +81,15 @@ class AvetmissData::Package
     self.achievement_stores = stores["NAT00100"]
     self.enrolment_stores = stores["NAT00120"]
     self.qual_completion_stores = stores["NAT00130"]
+    self
+  end
+
+  def each_store(&block)
+    [rto_stores, rto_delivery_location_stores, course_stores, unit_of_competency_stores, client_stores,
+     client_postal_detail_stores, disability_stores, achievement_stores, enrolment_stores,
+     qual_completion_stores].each do |stores_list|
+       stores_list.each(&block)
+     end
   end
 
   private

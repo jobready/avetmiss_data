@@ -64,4 +64,15 @@ describe AvetmissData::Package do
     specify { expect(subject).to equal(package.client_stores) }
     specify { expect(subject).not_to equal(package.enrolment_stores) }
   end
+
+  context '#each_store' do
+    let(:client_store) { AvetmissData::Stores::Client.new }
+    let(:rto_store) { AvetmissData::Stores::Rto.new }
+    before do
+      package.client_stores << client_store
+      package.rto_stores << rto_store
+    end
+
+    specify { expect { |b| package.each_store(&b) }.to yield_successive_args(rto_store, client_store) }
+  end
 end
