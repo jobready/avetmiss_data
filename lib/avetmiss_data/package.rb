@@ -1,5 +1,18 @@
 # This is the overall package.
 class AvetmissData::Package
+  FILES_MAP = {
+    rto_stores: "NAT00010",
+    rto_delivery_location_stores: "NAT00020",
+    course_stores: "NAT00030",
+    unit_of_competency_stores: "NAT00060",
+    client_stores: "NAT00080",
+    client_postal_detail_stores: "NAT00085",
+    disability_stores: "NAT00090",
+    achievement_stores: "NAT00100",
+    enrolment_stores: "NAT00120",
+    qual_completion_stores: "NAT00130"
+  }
+
   attr_accessor :rto_stores
   attr_accessor :rto_delivery_location_stores
   attr_accessor :course_stores
