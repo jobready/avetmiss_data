@@ -1,3 +1,4 @@
+# A store represents a line in a NAT file.
 class AvetmissData::Stores::Base
   class_attribute :file_name, :parser, :builder, :attribute_names
   attr_accessor :line_number, :package
@@ -9,6 +10,10 @@ class AvetmissData::Stores::Base
     self.attribute_names = mapping.keys
     attr_accessor *attribute_names
   end
+
+  nat_file('', {
+    identifier: 0..-1
+  })
 
   def self.file_name_to_store(file_name)
     AvetmissData::Stores::Base.subclasses.find { |store| store.file_name == file_name.to_s }
