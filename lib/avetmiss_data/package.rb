@@ -83,7 +83,7 @@ class AvetmissData::Package
   end
 
   def from_zip_file(path)
-    stores = AvetmissData::ZipFile.new(path).stores
+    stores = zip_file_to_stores(path) 
     self.rto_stores = stores["NAT00010"]
     self.rto_delivery_location_stores = stores["NAT00020"]
     self.course_stores = stores["NAT00030"]

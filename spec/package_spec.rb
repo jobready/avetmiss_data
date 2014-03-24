@@ -1,17 +1,17 @@
 require 'spec_helper'
 
-describe AvetmissData::Package do
-  let!(:package) { AvetmissData::Package.new }
+describe AvetmissData::V7::Package do
+  let!(:package) { AvetmissData::V7::Package.new }
 
   context '<<' do
-    let!(:enrolment_store) { AvetmissData::Stores::Enrolment.new }
+    let!(:enrolment_store) { AvetmissData::Stores::V7::Enrolment.new }
     before { package.enrolment_stores << enrolment_store }
     specify { expect(enrolment_store.package).to eq(package) }
   end
 
   context 'create package' do
     before do
-      package.enrolment_stores << AvetmissData::Stores::Enrolment.new(unit_competency_identifier: 'BSBRES401A',
+      package.enrolment_stores << AvetmissData::Stores::V7::Enrolment.new(unit_competency_identifier: 'BSBRES401A',
                                                                       package: package)
     end
 
@@ -59,15 +59,15 @@ describe AvetmissData::Package do
   end
 
   context '#stores_list_for' do
-    let(:client_store) { AvetmissData::Stores::Client.new }
+    let(:client_store) { AvetmissData::Stores::V7::Client.new }
     subject { package.store_list_for(client_store) }
     specify { expect(subject).to equal(package.client_stores) }
     specify { expect(subject).not_to equal(package.enrolment_stores) }
   end
 
   context '#each_store' do
-    let(:client_store) { AvetmissData::Stores::Client.new }
-    let(:rto_store) { AvetmissData::Stores::Rto.new }
+    let(:client_store) { AvetmissData::Stores::V7::Client.new }
+    let(:rto_store) { AvetmissData::Stores::V7::Rto.new }
     before do
       package.client_stores << client_store
       package.rto_stores << rto_store

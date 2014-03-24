@@ -72,7 +72,7 @@ describe AvetmissData::Stores::Base do
   end
 
   context '#package=' do
-    let(:enrolment_store) { AvetmissData::Stores::Enrolment.new }
+    let(:enrolment_store) { AvetmissData::Stores::V7::Enrolment.new }
     let(:package) { AvetmissData::Package.new }
 
     context 'close the loop' do
@@ -85,11 +85,11 @@ describe AvetmissData::Stores::Base do
 
   context 'store finders' do
     let(:package) { AvetmissData::Package.new }
-    let(:rto_store) { AvetmissData::Stores::Rto.new(training_organisation_identifier: '1') }
+    let(:rto_store) { AvetmissData::Stores::V7::Rto.new(training_organisation_identifier: '1') }
     let(:rto_delivery_location_store) {
-      AvetmissData::Stores::RtoDeliveryLocation.new(training_organisation_identifier: '1') }
+      AvetmissData::Stores::V7::RtoDeliveryLocation.new(training_organisation_identifier: '1') }
     let(:rto_delivery_location_store2) {
-      AvetmissData::Stores::RtoDeliveryLocation.new(training_organisation_identifier: '2') }
+      AvetmissData::Stores::V7::RtoDeliveryLocation.new(training_organisation_identifier: '2') }
 
     before do
       rto_store.package = package

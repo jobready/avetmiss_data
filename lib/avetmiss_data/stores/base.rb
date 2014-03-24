@@ -15,10 +15,6 @@ class AvetmissData::Stores::Base
     identifier: 0..-1
   })
 
-  def self.file_name_to_store(file_name)
-    AvetmissData::Stores::Base.subclasses.find { |store| store.file_name == file_name.to_s }
-  end
-
   def self.from_line(line, line_number = 0)
     new(parser.parse(line).merge(line_number: line_number))
   end

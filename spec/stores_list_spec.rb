@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe AvetmissData::StoresList do
   let(:package) { AvetmissData::Package.new }
-  let(:store) { AvetmissData::Stores::Rto.new }
+  let(:store) { AvetmissData::Stores::V7::Rto.new }
 
   context '#initialize' do
     context 'no enum' do
