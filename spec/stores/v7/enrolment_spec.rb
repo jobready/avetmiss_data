@@ -28,8 +28,15 @@ describe AvetmissData::Stores::V7::Enrolment do
       specify { expect(subject.new_apprenticeships_client_identifier).to eq('bc123') }
       specify { expect(subject.study_reason_identifier).to eq('@@') }
       specify { expect(subject.vet_in_school_flag).to eq('N') }
+      specify { expect(subject.specific_funding_identifier).to eq('9898121266') }
       specify { expect(subject.training_organisation_outcome_identifier).to eq('70') }
       specify { expect(subject.state_training_authority_funding_source).to eq('0') }
+      specify { expect(subject.client_tuition_fee).to eq('1234') }
+      specify { expect(subject.exemption_type_identifier).to eq('1') }
+      specify { expect(subject.purchasing_contract_identifier).to eq('123456781234') }
+      specify { expect(subject.purchasing_contract_schedule_identifier).to eq('123') }
+      specify { expect(subject.hours_attended).to eq('1234') }
+      specify { expect(subject.associated_course_identifier).to eq('1234567891') }
       specify { expect(subject.extras).not_to be_blank }
     end
   end

@@ -17,14 +17,17 @@ describe AvetmissData::Stores::V7::ClientPostalDetail do
       specify { expect(subject.client_title).to eq('Mr') }
       specify { expect(subject.client_first_name).to eq('Mount') }
       specify { expect(subject.client_last_name).to eq('Franklin') }
-      specify { expect(subject.address_first_line).to eq('Some Steet') }
-      specify { expect(subject.address_second_line).to be_blank }
-      specify { expect(subject.address_postal).to eq('Aarons Pass') }
-      specify { expect(subject.post_code).to eq('2850') }
-      specify { expect(subject.state_identifier).to eq('01') }
-      specify { expect(subject.telephone_home).to eq('0312121231') }
-      specify { expect(subject.telephone_work).to be_blank }
-      specify { expect(subject.telephone_mobile).to eq('0222222222') }
+      specify { expect(subject.address_building).to eq('Headquarters') }
+      specify { expect(subject.address_unit).to eq('1') }
+      specify { expect(subject.address_street_number).to eq('2200') }
+      specify { expect(subject.address_street_name).to eq('Mission College Blvd') }
+      specify { expect(subject.address_po_box).to eq('BOX 1') }
+      specify { expect(subject.address_location).to eq('Santa Clara') }
+      specify { expect(subject.address_postcode).to eq('2001') }
+      specify { expect(subject.address_state_identifier).to eq('08') }
+      specify { expect(subject.telephone_home).to eq('0212345678') }
+      specify { expect(subject.telephone_work).to eq('0299125678') }
+      specify { expect(subject.telephone_mobile).to eq('0400123456') }
       specify { expect(subject.email_address).to eq('ritar@jobready.com.au') }
       specify { expect(subject.extras).to be_blank }
     end

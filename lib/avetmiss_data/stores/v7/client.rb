@@ -16,7 +16,13 @@ class AvetmissData::Stores::V7::Client < AvetmissData::Stores::V7::Base
     at_school_flag: 102...103,
     english_proficiency_identifier: 103...104,
     address_location: 104...154,
-    extras: 154..-1
+    unique_student_identifier: 154...164,
+    address_state_identifier: 164...166,
+    address_building: 166...216,
+    address_unit: 216...246,
+    address_street_number: 246...261,
+    address_street_name: 261...331,
+    extras: 331..-1
   })
 
   alias_method :identifier, :client_identifier

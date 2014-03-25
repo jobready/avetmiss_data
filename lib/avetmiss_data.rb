@@ -4,12 +4,6 @@ require 'zipruby'
 require 'set'
 
 module AvetmissData
-  module V6
-  end
-
-  module V7
-  end
-
   module Stores
     module V6
     end
@@ -22,8 +16,6 @@ end
 require 'avetmiss_data/zip_file'
 require 'avetmiss_data/stores_list'
 require 'avetmiss_data/package'
-require 'avetmiss_data/v6/package'
-require 'avetmiss_data/v7/package'
 require 'avetmiss_data/parser'
 require 'avetmiss_data/builder'
 require 'avetmiss_data/stores/base'

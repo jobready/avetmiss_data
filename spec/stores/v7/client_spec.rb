@@ -29,7 +29,13 @@ describe AvetmissData::Stores::V7::Client do
       specify { expect(subject.at_school_flag).to eq('Y') }
       specify { expect(subject.english_proficiency_identifier).to be_blank }
       specify { expect(subject.address_location).to eq('Aarons Pass') }
-      specify { expect(subject.extras).to be_blank }
+      specify { expect(subject.unique_student_identifier).to eq('123456') }
+      specify { expect(subject.address_state_identifier).to eq('08') }
+      specify { expect(subject.address_building).to eq('Headquarters') }
+      specify { expect(subject.address_unit).to eq('1') }
+      specify { expect(subject.address_street_number).to eq('2200') }
+      specify { expect(subject.address_street_name).to eq('Mission College Blvd') }
+#      specify { expect(subject.extras).to be_blank }
     end
   end
 end

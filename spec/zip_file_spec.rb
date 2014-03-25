@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe AvetmissData::ZipFile do
   context 'read a zip file' do
-    let!(:zip_file) { AvetmissData::ZipFile.new('spec/fixtures/zip_files/valid.zip') }
+    let!(:zip_file) { AvetmissData::ZipFile.new('spec/fixtures/zip_files/v7/valid.zip', '7.0') }
 
     context do
       specify { expect(zip_file.stores).not_to be_empty }

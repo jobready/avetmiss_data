@@ -82,19 +82,20 @@ class AvetmissData::Package
     send("#{store_name}_stores")
   end
 
-  def from_zip_file(path)
-    stores = zip_file_to_stores(path) 
-    self.rto_stores = stores["NAT00010"]
-    self.rto_delivery_location_stores = stores["NAT00020"]
-    self.course_stores = stores["NAT00030"]
-    self.unit_of_competency_stores = stores["NAT00060"]
-    self.client_stores = stores["NAT00080"]
-    self.client_postal_detail_stores = stores["NAT00085"]
-    self.disability_stores = stores["NAT00090"]
-    self.achievement_stores = stores["NAT00100"]
-    self.enrolment_stores = stores["NAT00120"]
-    self.qual_completion_stores = stores["NAT00130"]
-    self
+  def self.from_zip_file(zip_file)
+    stores = zip_file.stores
+    package = AvetmissData::Package.new
+    package.rto_stores = stores["NAT00010"]
+    package.rto_delivery_location_stores = stores["NAT00020"]
+    package.course_stores = stores["NAT00030"]
+    package.unit_of_competency_stores = stores["NAT00060"]
+    package.client_stores = stores["NAT00080"]
+    package.client_postal_detail_stores = stores["NAT00085"]
+    package.disability_stores = stores["NAT00090"]
+    package.achievement_stores = stores["NAT00100"]
+    package.enrolment_stores = stores["NAT00120"]
+    package.qual_completion_stores = stores["NAT00130"]
+    package
   end
 
   def each_store(&block)

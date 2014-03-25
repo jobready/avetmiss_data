@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe AvetmissData::V7::Package do
-  let!(:package) { AvetmissData::V7::Package.new }
+describe AvetmissData::Package do
+  let(:package) { AvetmissData::Package.new }
 
   context '<<' do
     let!(:enrolment_store) { AvetmissData::Stores::V7::Enrolment.new }
@@ -23,39 +23,51 @@ describe AvetmissData::V7::Package do
   end
 
   context 'load package from zip' do
-    before { package.from_zip_file('spec/fixtures/zip_files/valid.zip') }
+    let(:package) { AvetmissData::Package.from_zip_file(zip_file) }
 
-=begin
-    specify do
-      expect(package.rto_stores.length).to eq(1)
-      expect(package.rto_delivery_location_stores.length).to eq(1)
-      expect(package.course_stores.length).to eq(1)
-      expect(package.unit_of_competency_stores.length).to eq(1)
-      expect(package.client_stores.length).to eq(32)
-      expect(package.client_postal_detail_stores.length).to eq(5)
-      expect(package.disability_stores.length).to eq(1)
-      expect(package.achievement_stores.length).to eq(1)
-      expect(package.enrolment_stores.length).to eq(5)
-      expect(package.qual_completion_stores.length).to eq(1)
+    context '7.0' do
+      let(:zip_file) { AvetmissData::ZipFile.new('spec/fixtures/zip_files/v7/valid.zip', '7.0') }
+
+      specify { expect(package.rto_stores.length).to eq(1) }
+      specify { expect(package.rto_delivery_location_stores.length).to eq(1) }
+      specify { expect(package.course_stores.length).to eq(1) }
+      specify { expect(package.unit_of_competency_stores.length).to eq(1) }
+      specify { expect(package.client_stores.length).to eq(32) }
+      specify { expect(package.client_postal_detail_stores.length).to eq(5) }
+      specify { expect(package.disability_stores.length).to eq(1) }
+      specify { expect(package.achievement_stores.length).to eq(1) }
+      specify { expect(package.enrolment_stores.length).to eq(5) }
+      specify { expect(package.qual_completion_stores.length).to eq(1) }
+
+      let!(:rto_store) { package.rto_stores.first }
+      specify { expect(rto_store.training_organisation_identifier).to eq('0101') }
+      let!(:enrolment_store) { package.enrolment_stores.first }
+      specify { expect(enrolment_store.unit_competency_identifier).to eq('BSBRES401A') }
+
+      specify { expect(package.client_stores.first.package).to eq(package) }
     end
-=end
-    specify { expect(package.rto_stores.length).to eq(1) }
-    specify { expect(package.rto_delivery_location_stores.length).to eq(1) }
-    specify { expect(package.course_stores.length).to eq(1) }
-    specify { expect(package.unit_of_competency_stores.length).to eq(1) }
-    specify { expect(package.client_stores.length).to eq(32) }
-    specify { expect(package.client_postal_detail_stores.length).to eq(5) }
-    specify { expect(package.disability_stores.length).to eq(1) }
-    specify { expect(package.achievement_stores.length).to eq(1) }
-    specify { expect(package.enrolment_stores.length).to eq(5) }
-    specify { expect(package.qual_completion_stores.length).to eq(1) }
 
-    let!(:rto_store) { package.rto_stores.first }
-    specify { expect(rto_store.training_organisation_identifier).to eq('0101') }
-    let!(:enrolment_store) { package.enrolment_stores.first }
-    specify { expect(enrolment_store.unit_competency_identifier).to eq('BSBRES401A') }
+    context '6.1' do
+      let(:zip_file) { AvetmissData::ZipFile.new('spec/fixtures/zip_files/v6/valid.zip', '6.1') }
 
-    specify { expect(package.client_stores.first.package).to eq(package) }
+      specify { expect(package.rto_stores.length).to eq(1) }
+      specify { expect(package.rto_delivery_location_stores.length).to eq(1) }
+      specify { expect(package.course_stores.length).to eq(1) }
+      specify { expect(package.unit_of_competency_stores.length).to eq(1) }
+      specify { expect(package.client_stores.length).to eq(32) }
+      specify { expect(package.client_postal_detail_stores.length).to eq(5) }
+      specify { expect(package.disability_stores.length).to eq(1) }
+      specify { expect(package.achievement_stores.length).to eq(1) }
+      specify { expect(package.enrolment_stores.length).to eq(5) }
+      specify { expect(package.qual_completion_stores.length).to eq(1) }
+
+      let!(:rto_store) { package.rto_stores.first }
+      specify { expect(rto_store.training_organisation_identifier).to eq('0101') }
+      let!(:enrolment_store) { package.enrolment_stores.first }
+      specify { expect(enrolment_store.unit_competency_identifier).to eq('BSBRES401A') }
+
+      specify { expect(package.client_stores.first.package).to eq(package) }
+    end
   end
 
   context '#stores_list_for' do

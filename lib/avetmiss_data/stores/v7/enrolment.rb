@@ -15,9 +15,16 @@ class AvetmissData::Stores::V7::Enrolment < AvetmissData::Stores::V7::Base
     new_apprenticeships_client_identifier: 79...89,
     study_reason_identifier: 89...91,
     vet_in_school_flag: 91...92,
-    training_organisation_outcome_identifier: 92...96,
-    state_training_authority_funding_source: 96...99,
-    extras: 99..-1
+    specific_funding_identifier: 92...102,
+    training_organisation_outcome_identifier: 102...105,
+    state_training_authority_funding_source: 105...108,
+    client_tuition_fee: 108...112,
+    exemption_type_identifier: 112...113,
+    purchasing_contract_identifier: 113...125,
+    purchasing_contract_schedule_identifier: 125...128,
+    hours_attended: 128...132,
+    associated_course_identifier: 132...142,
+    extras: 142..-1
   })
 
   alias_method :identifier, :client_identifier
