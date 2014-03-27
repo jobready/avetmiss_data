@@ -6,7 +6,7 @@ class AvetmissData::Stores::V7::Client < AvetmissData::Stores::V7::Base
     highest_school_level_completed_year: 72...76,
     sex: 76...77,
     date_of_birth: 77...85,
-    post_code: 85...89,
+    address_postcode: 85...89,
     indigenous_status_identifier: 89...90,
     main_language_not_english: 90...94,
     labour_force_status_identifier: 94...96,

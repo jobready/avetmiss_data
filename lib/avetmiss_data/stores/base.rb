@@ -44,6 +44,38 @@ class AvetmissData::Stores::Base
     @package
   end
 
+  def self.version
+    raise "Subclass must implement"
+  end
+
+  def version
+    self.class.version
+  end
+
+  def self.version_constant
+    raise "Subclass must implement"
+  end
+
+  def version_constant
+    self.class.version_constant
+  end
+
+  def self.v6?
+    version == "6.1"
+  end
+
+  def v6?
+    self.class.v6?
+  end
+
+  def self.v7?
+    version == "7.0"
+  end
+
+  def v7?
+    self.class.v7?
+  end
+
   def self.store_finder(kind, self_atttribute, foreign_attribute = self_atttribute)
     # This is an example of what the define_method calls do:
     # store_finder :rto_delivery_location, 'delivery_location_identifier',
