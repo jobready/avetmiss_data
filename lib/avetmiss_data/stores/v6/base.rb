@@ -1,6 +1,7 @@
+# TODO
 class AvetmissData::Stores::V6::Base < AvetmissData::Stores::Base
   def self.version
-    "6.0"
+    "6.1"
   end
 
   def self.version_constant
