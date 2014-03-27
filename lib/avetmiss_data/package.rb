@@ -13,6 +13,7 @@ class AvetmissData::Package
     qual_completion_stores: "NAT00130"
   }
 
+  attr_accessor :activity_year
   attr_accessor :rto_stores
   attr_accessor :rto_delivery_location_stores
   attr_accessor :course_stores
@@ -24,7 +25,8 @@ class AvetmissData::Package
   attr_accessor :enrolment_stores
   attr_accessor :qual_completion_stores
 
-  def initialize
+  def initialize(activity_year = nil)
+    @activity_year = activity_year
     self.rto_stores = []
     self.rto_delivery_location_stores = []
     self.course_stores = []
@@ -82,9 +84,9 @@ class AvetmissData::Package
     send("#{store_name}_stores")
   end
 
-  def self.from_zip_file(zip_file)
+  def self.from_zip_file(zip_file, activity_year = nil)
     stores = zip_file.stores
-    package = AvetmissData::Package.new
+    package = AvetmissData::Package.new(activity_year)
     package.rto_stores = stores["NAT00010"]
     package.rto_delivery_location_stores = stores["NAT00020"]
     package.course_stores = stores["NAT00030"]
