@@ -19,7 +19,6 @@ describe AvetmissData::Stores::V7::Client do
       specify { expect(subject.highest_school_level_completed_year).to eq('1990') }
       specify { expect(subject.sex).to eq('M') }
       specify { expect(subject.date_of_birth).to eq('02091964') }
-      specify { expect(subject.post_code).to eq('2850') }
       specify { expect(subject.indigenous_status_identifier).to eq('2') }
       specify { expect(subject.main_language_not_english).to eq('1201') }
       specify { expect(subject.labour_force_status_identifier).to eq('03') }
@@ -30,6 +29,7 @@ describe AvetmissData::Stores::V7::Client do
       specify { expect(subject.english_proficiency_identifier).to be_blank }
       specify { expect(subject.address_location).to eq('Aarons Pass') }
       specify { expect(subject.unique_student_identifier).to eq('123456') }
+      specify { expect(subject.address_postcode).to eq('2850') }
       specify { expect(subject.address_state_identifier).to eq('08') }
       specify { expect(subject.address_building).to eq('Headquarters') }
       specify { expect(subject.address_unit).to eq('1') }
