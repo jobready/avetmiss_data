@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'byebug', '~> 2.7'
   s.add_development_dependency 'rake', '~> 10.1'
   s.add_development_dependency 'coveralls'
-  s.add_dependency 'activesupport', '3.2.17'
+  s.add_dependency 'activesupport'
   s.add_dependency 'zipruby'
 
   s.files        = `git ls-files`.split("\n")
