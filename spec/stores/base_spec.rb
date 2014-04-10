@@ -99,8 +99,21 @@ describe AvetmissData::Stores::Base do
 
     specify { expect(rto_delivery_location_store.rto_store_exists?).to be_true }
     specify { expect(rto_delivery_location_store.rto_store).to eq(rto_store) }
+    specify { expect(rto_store.rto_store).to eq(rto_store) }
+    specify { expect(rto_delivery_location_store.rto_delivery_location_store).to eq(rto_delivery_location_store) }
     specify { expect(rto_delivery_location_store2.rto_store_exists?).to be_false }
     specify { expect(rto_delivery_location_store2.rto_store).to be_nil }
+    specify { expect(rto_delivery_location_store2.rto_delivery_location_store).to eq(rto_delivery_location_store2) }
+
   end
 
+  context '.store_name' do
+    let(:klass) { AvetmissData::Stores::V7::Enrolment }
+    specify { expect(klass.store_name).to eq('enrolment') }
+  end
+
+  context '#store_name' do
+    let(:enrolment_store) { AvetmissData::Stores::V7::Enrolment.new }
+    specify { expect(enrolment_store.store_name).to eq('enrolment') }
+  end
 end

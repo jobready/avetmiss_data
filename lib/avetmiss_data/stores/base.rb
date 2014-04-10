@@ -76,19 +76,38 @@ class AvetmissData::Stores::Base
     self.class.v7?
   end
 
+  def self.store_name
+    self.name.demodulize.underscore
+  end
+
+  def store_name
+    self.class.store_name
+  end
+
   def self.store_finder(kind, self_atttribute, foreign_attribute = self_atttribute)
     # This is an example of what the define_method calls do:
     # store_finder :rto_delivery_location, 'delivery_location_identifier',
     #  'training_organisation_delivery_location_identifier'
 
     # def rto_delivery_location_store
-    #   package.rto_delivery_location_stores.find { |store| store.training_organisation_delivery_location_identifier
-    #    == self.delivery_location_identifier
+    #   return nil unless package
+    #
+    #   if store_name == 'rto_delivery_location'
+    #     self
+    #   else
+    #     package.rto_delivery_location_stores.find { |store| store.training_organisation_delivery_location_identifier
+    #       == self.delivery_location_identifier
+    #   end
     # end
     define_method("#{kind}_store") do
       return nil unless package
-      self_value = send(self_atttribute)
-      package.send("#{kind}_stores").find { |store| store.send(foreign_attribute) == self_value }
+
+      if store_name == kind.to_s
+        self
+      else
+        self_value = send(self_atttribute)
+        package.send("#{kind}_stores").find { |store| store.send(foreign_attribute) == self_value }
+      end
     end
 
     # def rto_delivery_location_store_exists?
