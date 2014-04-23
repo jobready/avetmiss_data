@@ -84,7 +84,24 @@ class AvetmissData::Stores::Base
     self.class.store_name
   end
 
+  def self.store_name_to_class(symbol, version = version_constant)
+    store_name = symbol.to_s.gsub(/_stores?\Z/, '').camelize
+    AvetmissData::Stores.const_get(version).const_get(store_name)
+  end
+
+  def store_name_to_class(symbol)
+    self.class.store_name_to_class(symbol)
+  end
+
+  class_attribute :store_finders
+  self.store_finders = {}
+
   def self.store_finder(kind, self_atttribute, foreign_attribute = self_atttribute)
+    self.store_finders[kind] = {
+      self_attribute: self_atttribute,
+      foreign_attribute: foreign_attribute
+    }
+
     # This is an example of what the define_method calls do:
     # store_finder :rto_delivery_location, 'delivery_location_identifier',
     #  'training_organisation_delivery_location_identifier'
@@ -118,16 +135,16 @@ class AvetmissData::Stores::Base
     end
   end
 
-  store_finder :rto, 'training_organisation_identifier'
-  store_finder :rto_delivery_location, 'delivery_location_identifier',
-             'training_organisation_delivery_location_identifier'
-  store_finder :course, 'qualification_identifier'
-  store_finder :unit_of_competency, 'unit_competency_identifier'
-  store_finder :client, 'client_identifier'
-  store_finder :client_postal_detail, 'client_identifier'
-  store_finder :disability, 'client_identifier'
-  store_finder :achievement, 'client_identifier'
-  store_finder :enrolment, 'client_identifier'
-  store_finder :qual_completion, 'client_identifier'
+  store_finder :rto, :training_organisation_identifier
+  store_finder :rto_delivery_location, :delivery_location_identifier,
+    :training_organisation_delivery_location_identifier
+  store_finder :course, :qualification_identifier
+  store_finder :unit_of_competency, :unit_competency_identifier
+  store_finder :client, :client_identifier
+  store_finder :client_postal_detail, :client_identifier
+  store_finder :disability, :client_identifier
+  store_finder :achievement, :client_identifier
+  store_finder :enrolment, :client_identifier
+  store_finder :qual_completion, :client_identifier
 
 end
