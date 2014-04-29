@@ -100,6 +100,15 @@ class AvetmissData::Package
     package
   end
 
+  def to_zip_file
+    Zip::Archive.open_buffer(Zip::CREATE) do |archive|
+      FILES_MAP.each_pair do |stores_name, file_name|
+        lines = send(stores_name).map { |store| store.to_line }.join("\n")
+        archive.add_buffer("#{file_name}.txt", lines)
+      end
+    end
+  end
+
   def each_store(&block)
     [rto_stores, rto_delivery_location_stores, course_stores, unit_of_competency_stores, client_stores,
      client_postal_detail_stores, disability_stores, achievement_stores, enrolment_stores,
