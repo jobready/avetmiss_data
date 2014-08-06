@@ -34,7 +34,7 @@ class AvetmissData::ZipFile
       content = file.read
       next unless content
 
-      name = file.name.gsub(/\.txt$/, '')
+      name = file.name.gsub(/\.txt$/, '').upcase
       @stores[name] = build_stores(name, content.lines)
     end
     @stores
