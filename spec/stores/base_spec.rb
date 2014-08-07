@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe AvetmissData::Stores::Base do
   context '.nat_file' do
-    let(:store_base) { AvetmissData::Stores::Base.new }
+    let(:base_store) { AvetmissData::Stores::Base.new }
     before { AvetmissData::Stores::Base.nat_file('TEST', {}) }
-    specify { expect(store_base.file_name).to eq('TEST') }
+    specify { expect(base_store.file_name).to eq('TEST') }
   end
 
   context 'reading/writing' do
@@ -16,7 +16,7 @@ describe AvetmissData::Stores::Base do
       })
     end
 
-    let!(:attrs_set) do
+    let(:attrs_set) do
       {
         foo: '12345',
         bar: 'abcde',
@@ -25,9 +25,9 @@ describe AvetmissData::Stores::Base do
     end
 
     context '#attributes' do
-      let!(:store_base) { AvetmissData::Stores::Base.new(attrs_set) }
+      let(:base_store) { AvetmissData::Stores::Base.new(attrs_set) }
       specify do
-        expect(store_base.attributes).to eq(
+        expect(base_store.attributes).to eq(
           foo: '12345',
           bar: 'abcde',
           baz: 'LOL'
@@ -37,37 +37,83 @@ describe AvetmissData::Stores::Base do
 
     context 'sets attributes' do
       context 'attributes=' do
-        let!(:store_base) { AvetmissData::Stores::Base.new }
-        before { store_base.attributes = attrs_set }
+        let(:base_store) { AvetmissData::Stores::Base.new }
+        before { base_store.attributes = attrs_set }
         specify do
-          expect(store_base.foo).to eq('12345')
-          expect(store_base.bar).to eq('abcde')
-          expect(store_base.baz).to eq('LOL')
+          expect(base_store.foo).to eq('12345')
+          expect(base_store.bar).to eq('abcde')
+          expect(base_store.baz).to eq('LOL')
         end
       end
 
       context 'on init' do
-        let!(:store_base) { AvetmissData::Stores::Base.new(attrs_set) }
+        let(:base_store) { AvetmissData::Stores::Base.new(attrs_set) }
         specify do
-          expect(store_base.foo).to eq('12345')
-          expect(store_base.bar).to eq('abcde')
-          expect(store_base.baz).to eq('LOL')
+          expect(base_store.foo).to eq('12345')
+          expect(base_store.bar).to eq('abcde')
+          expect(base_store.baz).to eq('LOL')
         end
       end
     end
 
     context '.from_line' do
-      let!(:store_base) { AvetmissData::Stores::Base.from_line('12345abcdeLOL') }
+      let(:base_store) { AvetmissData::Stores::Base.from_line('12345abcdeLOL') }
       specify do
-        expect(store_base.foo).to eq('12345')
-        expect(store_base.bar).to eq('abcde')
-        expect(store_base.baz).to eq('LOL')
+        expect(base_store.foo).to eq('12345')
+        expect(base_store.bar).to eq('abcde')
+        expect(base_store.baz).to eq('LOL')
       end
     end
 
     context 'storing' do
-      let!(:store_base) { AvetmissData::Stores::Base.new(attrs_set) }
-      specify { expect(store_base.to_line).to eq('12345abcdeLOL') }
+      let(:base_store) { AvetmissData::Stores::Base.new(attrs_set) }
+      specify { expect(base_store.to_line).to eq('12345abcdeLOL') }
     end
+  end
+
+  context '#package=' do
+    let(:enrolment_store) { AvetmissData::Stores::V7::Enrolment.new }
+    let(:package) { AvetmissData::Package.new }
+
+    context 'close the loop' do
+      before { enrolment_store.package = package }
+      specify { expect(package.enrolment_stores).to include(enrolment_store) }
+    end
+
+    specify { expect(enrolment_store.package = package).to eq(package) }
+  end
+
+  context 'store finders' do
+    let(:package) { AvetmissData::Package.new }
+    let(:rto_store) { AvetmissData::Stores::V7::Rto.new(training_organisation_identifier: '1') }
+    let(:rto_delivery_location_store) {
+      AvetmissData::Stores::V7::RtoDeliveryLocation.new(training_organisation_identifier: '1') }
+    let(:rto_delivery_location_store2) {
+      AvetmissData::Stores::V7::RtoDeliveryLocation.new(training_organisation_identifier: '2') }
+
+    before do
+      rto_store.package = package
+      rto_delivery_location_store.package = package
+      rto_delivery_location_store2.package = package
+    end
+
+    specify { expect(rto_delivery_location_store.rto_store_exists?).to be_true }
+    specify { expect(rto_delivery_location_store.rto_store).to eq(rto_store) }
+    specify { expect(rto_store.rto_store).to eq(rto_store) }
+    specify { expect(rto_delivery_location_store.rto_delivery_location_store).to eq(rto_delivery_location_store) }
+    specify { expect(rto_delivery_location_store2.rto_store_exists?).to be_false }
+    specify { expect(rto_delivery_location_store2.rto_store).to be_nil }
+    specify { expect(rto_delivery_location_store2.rto_delivery_location_store).to eq(rto_delivery_location_store2) }
+
+  end
+
+  context '.store_name' do
+    let(:klass) { AvetmissData::Stores::V7::Enrolment }
+    specify { expect(klass.store_name).to eq('enrolment') }
+  end
+
+  context '#store_name' do
+    let(:enrolment_store) { AvetmissData::Stores::V7::Enrolment.new }
+    specify { expect(enrolment_store.store_name).to eq('enrolment') }
   end
 end

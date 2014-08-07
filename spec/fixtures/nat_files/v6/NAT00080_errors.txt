@@ -1,0 +1,100 @@
+          Akbar, Ali                                                                                   1                                                  
+PAREG99999TTTTTTT , TTTTT                                             102009M01091993262091201011101YYN Queanbeyan   
+PAREG00191Cameron , David                                             102009M01091993262091201011101YNN Queanbeyan                                        
+PAREG00192Cole, Gavin                                                 @@@@@@M24051974261741201011101NYN Kaleen                                            
+PAREG00197Burr, Patrick                                               122005M21031987260241201011101NYN Lyneham                                           
+PAREG00277Ellero, Simon                                               122002M06121984261541201011101YYN Melba                                             
+PAREG00295Hartas, Shane                                               112009M30111991263041201011101NNN Cooma                                             
+PAREG00306Elliot, Sam                                                 122010M18071992261741201011101NYN Kaleen                                            
+PAREG00309Goldfinch, Noel                                             122010M2308199226204120101@@@@NYN Queanbeyan                                        
+PAREG00420Bengtsson, Caitlin                                          102009F23101993291441201011101NYN Forde                                             
+PAREG00439Chapman, Shavaun                                            122000F07031984258011201011101NYN Goulburn                                          
+PAREG00528Forrest, Paul                                               101984M10071968290441201011101NNN Monash                                            
+PAREG00637Cook, Kevin                                                 091977M15051962262041201011101NNN Queanbeyan                                        
+PAREG00702Burgess, Rachael                                            122007F2610198926141@@@@011101NYN Cook                                              
+PAREG00704Burrows, Jamie                                              122010M3107199129024@@@@011101NYN Kambah                                            
+PAREG00719Frino, Carla                                                122011F2406199326034@@@@011101NYN Red Hill                                          
+PAREG00744Harris, Zachary                                             122010M0904199329054@@@@011101NNN Calwell                                           
+PAREG00756Crompton, Jason                                             102001M0210198526114@@@@011101NNN Rivett                                            
+PAREG01009Bowler, Owen                                                101970M09071956290341201011101NYN Wanniassa                                         
+PAREG01013Dal Col, Antonio                                            121982M05021965290541201021101NNN Calwell                                           
+PAREG01024Colbert, Samuel                                             122011M0207199229054@@@@01@@@@NNN Gilmore                                           
+PAREG01083Aquilina, Ethan                                             092011M0607199629054@@@@021101NNY Chisholm                                          
+PAREG01098Foster, Rachael                                             11@@@@F2607199526111@@@@021101NNY Waramanga                                         
+PAREG01106Guthrie, Brayden                                            10@@@@M2301199726151@@@@021101NNY Spence                                            
+PAREG01110French, Christopher                                         11@@@@M0808199529061@@@@021101YNY Banks                                             
+PAREG01127Hardie, Sarah                                               10@@@@F1304199529054@@@@021101N@Y Chisholm                                          
+PAREG01161Beyer, Stefan                                               121988M1411196529044@@@@022304NYN Monash                                            
+PAREG01195Barnes, Amy                                                 102011F1005199526204@@@@011101NNN Crestwood                                         
+PAREG01196Chalker, Amy                                                10@@@@F19011995261941201021101NNY Jerrabomberra                                     
+PAREG01197Elkin, Michael                                              122008M01111989291341201011101NYN Ngunnawal                                         
+PAREG01201Cooper, Amy                                                 122004F26061987261241201011101NYN Turner                                            
+PAREG01249Antoniak, Jay                                               122001M0610198326224@@@@011101YN@ Araluen                                           
+PAREG01251Edwards, Rebecca                                            @@@@@@F0406198629034@@@@021101NYN Wanniassa                                         
+PAREG01252Dhillon, Guramrit Singh                                     @@@@@@M1309198426064@@@@037103NYN Chifley                                           
+PAREG01253Fairbairn, Glenn                                            122001M28071984261541201021101NYN Melba                                             
+PAREG01255Bartels, Dean                                               111986M20091970262041201011101NYN Wamboin                                           
+PAREG01263Cumming, Sarah                                              12@@@@F2904199326114@@@@011101NNN Rivett                                            
+PAREG01271Cumming, Rachael                                            122011F2904199326114@@@@011101NYN Rivett                                            
+PAREG01274Cowie, Steven                                               @@@@@@M2803197629134@@@@021101NNN Palmerston                                        
+PAREG01275Harmey, James                                               122007M27081989291341201011101NYN Ngunnawal                                         
+PAREG01281Bush, Justin                                                @@@@@@M1507198626154@@@@011101NYN Latham                                            
+PAREG01305Connors, Thaddeus                                           09@@@@M260619972604@@@@@@@@@@@@@Y Narrabundah                                       
+PAREG01324Gregory, Trent                                              102010M3105199429054@@@@011101NNN Isabella Plains                                   
+PAREG01368Henshall, Phoebe                                            122010F1009199226024@@@@011101NNN Watson                                            
+PAREG01372Davison, Jemma                                              11@@@@F0909199529051@@@@021101NNY Theodore                                          
+PAREG01378Beverley, Fletcher                                          122011M1712199229044@@@@011101NNN Gowrie                                            
+PAREG01457Freeman, Kate                                               122010F07051992262041201011101NYN Sutton                                            
+PAREG01461Coates, Erin                                                102011F21071995291341201021101NYN PALMERSTON                                        
+PAREG01488Fatmaja, Benny                                              @@@@@@M2012196726004@@@@015202NYN DEAKIN                                            
+PAREG01746Ford, Josh                                                  10@@@@M1205199726041@@@@021101NNY@KINGSTON                                          
+PAREG01757Carney, Brandon                                             11@@@@M2806199429044@@@@021101NNY GOWRIE                                            
+PAREG01786Hallam, Brenton                                             @@@@@@M2805196126154@@@@011101NYN MACGREGOR                                         
+PAREG01792Dickinson, Gregory                                          121991M3101197426064@@@@011101NYN PHILLIP                                           
+PAREG01865Gamaralaga, Hemantha                                        121992M1108197229054@@@@017107NYN CHISHOLM                                          
+PAREG01866Goodrum, Keith                                              122004M1705198629054@@@@011101NNN RICHARDSON                                        
+PAREG02069Francis, Kate                                               102005F02111988290241201021101NYN KAMBAH                                            
+PAREG02072Fife, David                                                 101976M15031960261441201021101NNN PAGE                                              
+PAREG02086Altpere, Knut                                               @@@@@@M11061981290341201013303NYN WANNIASSA                                         
+PAREG02114Grebert, Anthony                                            102007M23071986260641201011101NNN CHIFLEY                                           
+PAREG02134Brown, Katherine                                            121997F06021980262041201011101NYN SUTTON                                            
+PAREG02143Downey, Stephanie                                           122008F21101990260241201011101NNN LYNEHAM                                           
+PAREG02213Corliss, Matthew                                            102003M21061987261541201011101NNN FLYNN                                             
+PAREG02216Brownlie, Samantha                                          11@@@@F24061995262141201021101NNY PRIMROSE VALLEY                                   
+PAREG02309Hart, Rodney                                                101977M28041961290541201011101@YN BONYTHON                                          
+PAREG02319Balik, Sema                                                 @@@@@@F23011960261444301024215N@N2MACQUARIE                                         
+PAREG02355Deane, Brooke                                               122001F270919832614@1201011101NYN PAGE                                              
+PAREG02368Bailey, Monica                                              121990F31051973260541201021101NYN HUGHES                                            
+PAREG02374Blakey, Andrew                                              121984M24111966260241201011101NYN HACKETT                                           
+PAREG02375Higginbotham, Robert                                        122000M24111982291441201011101NYN AMAROO                                            
+PAREG02377Cappello, Leonard                                           09@@@@M080719502615@1201021101NYN LATHAM                                            
+PAREG02400Bakker, Peter                                               12@@@@M03111960291341201021101NYN NICHOLLS                                          
+PAREG02401Crowie, Olivia                                              @@@@@@F12091957260041201019225NYN BARTON                                            
+PAREG02447Butt, Danielle                                              122004F07111987261141201021101NNN RIVETT                                            
+PAREG02485Brewster, Stephanie                                         122010F21011993262041201021101NNN QUEANBEYAN                                        
+PAREG02548Commisso, Marcus                                            11@@@@M17071995260341201021101NNY FORREST                                           
+PAREG02550Clarke, Deryck                                              @@@@@@M14051943262141201022102NYN BUNGENDORE                                        
+PAREG02552Bowman, Andrew                                              101980M09071964261141201021101NYN RIVETT                                            
+PAREG02554Gentleman, Kirrilee                                         122000F04031982290541201021101NYN CALWELL                                           
+PAREG02555Cook, Grant                                                 12@@@@M08021980290441201011101NYN FADDEN                                            
+PAREG02559Boswell, Paul                                               12@@@@M01051971261241201011101NYN CAMPBELL                                          
+PAREG02647Blunden, Taran                                              @@@@@@M2609199726021@@@@02@@@@@@@ LYNEHAM                                           
+PAREG02649Alcock, Mikaela                                             11@@@@F14061995290641201021101NNY BANKS                                             
+PAREG02654Carpenter, Bradley                                          11@@@@M29011996290631201021101NNY BANKS                                             
+PAREG02673Clark, Nicola                                               102010F14071993260741201011101NNN FARRER                                            
+PAREG02795Alkahwaji, Samir                                            12@@@@M21081964290544202024214NNN2CHISHOLM                                          
+PAREG02803Butt, Andrew                                                121983M07011967261741201021101NNN GIRALANG                                          
+PAREG02805Brookes, Karen                                              @@@@@@F140719812615@1201021101NNN CHARNWOOD                                         
+PAREG02817Burnett, Rhiannon                                           122012F04031994261541201011101YYN HOLT                                              
+PAREG02856Barras, Mandy                                               121997F140719702913@1201011101NNN FRANKLIN                                          
+PAREG02870Dungey, Jacinta                                             12@@@@F15061995291341201021101NNY NGUNNAWAL                                         
+PAREG02872Fowler, James                                               10@@@@M060719972603@@@@@02@@@@@@Y@Griffith                                          
+PAREG02911Atkinson, Dylan                                             09@@@@M301219982620@@@@@02@@@@@@Y@QUEANBEYAN                                        
+PAREG02913Chiswell, Paul                                              @@@@@@M20101972261741201021101NYN EVATT                                             
+PAREG02914Douglas, Guy                                                121989M19031971261541201021101NYN MELBA                                             
+PAREG02920Hepburn-Roy, Jacob                                          09@@@@M270819982905@120102@@@@@@Y CHISHOLM                                          
+PAREG02924Corcoran, Lincoln                                           102007M06021991262041201011101NNN QUEANBEYAN                                        
+PAREG02925Amosa, Rae                                                  @@@@@@M19111978261149308021201NNN1WARAMANGA                                         
+PAREG02933Baxter, Tyren                                               11@@@@M11121995290411201021101NNY MACARTHUR                                         
+PAREG02950Currie, Neil                                                12@@@@M05061958290541201011101NYN RICHARDSON                                        
+PAREG02958French, Liam                                                11@@@@M17031995290411201021101NNY MONASH                                            

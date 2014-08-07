@@ -1,0 +1,2 @@
+--style-measure 120
+--style-exclude db/schema.rb

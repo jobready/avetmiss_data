@@ -1,0 +1,13 @@
+MAE1         Academic English 1                                                                                  000000N0025
+MAE2         Academic English 2                                                                                  000000N0025
+MBSBCUS402A  Address customer needs                                                                              050105N0000
+MCUSMGE13A   Apply music knowledge and artistic judgement                                                        100101N0024
+CFNSICACC301BAdminister accounts payable                                                                         080101Y0050
+CFNSICGEN304BApply health and safety practices in the workplace                                                  081199Y0025
+CFNSICORG301BAdminister fixed asset register                                                                     081199Y0050
+CICAA4041B   Determine and confirm client business expectations and needs                                        000000Y0000
+CICAD4043B   Develop and present a feasibility report                                                            000000Y0000
+CICAS4022B   Determine and action client computing problems                                                      000000Y0000
+CICAS4106B   Action and complete change requests                                                                 080101Y0100
+CMJ101       Develop the Moonwalk and other dances                                                               100105Y0012
+CPSPGOV204B  Access and use resources                                                                            020109Y0025
