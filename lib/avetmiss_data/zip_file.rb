@@ -1,3 +1,5 @@
+# Represents a zip file containing 10 text files (corresponding to the 10 Store classes), each text file
+# containing a number of lines of data (one Store per line).
 class AvetmissData::ZipFile
   attr_accessor :path, :version
 
@@ -34,9 +36,13 @@ class AvetmissData::ZipFile
       content = file.read
       next unless content
 
-      name = file.name.gsub(/\.txt$/, '').upcase
+      name = store_name_for(file.name)
       @stores[name] = build_stores(name, content.lines)
     end
     @stores
+  end
+
+  def store_name_for(filename)
+    filename.upcase.gsub(/\.txt\Z/i, '')
   end
 end
