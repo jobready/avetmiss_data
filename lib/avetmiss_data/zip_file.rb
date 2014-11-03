@@ -27,6 +27,9 @@ class AvetmissData::ZipFile
 
   def build_stores(file_name, lines)
     store_klass = base_store_klass.file_name_to_store(file_name)
+    if store_klass.nil?
+      raise "Unable to locate store class inheriting from #{base_store_klass.name} for file '#{file_name}'"
+    end
     lines.map.each_with_index { |line, i| store_klass.from_line(line, i + 1) }
   end
 
