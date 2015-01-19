@@ -37,10 +37,12 @@ class AvetmissData::ZipFile
     @stores = {}
     read_archive do |file|
       content = file.read
-      next unless content
-
       name = store_name_for(file.name)
-      @stores[name] = build_stores(name, content.lines)
+      if content.nil?
+        @stores[name] = []
+      else
+        @stores[name] = build_stores(name, content.lines)
+      end
     end
     @stores
   end
