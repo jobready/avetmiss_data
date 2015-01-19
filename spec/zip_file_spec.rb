@@ -24,6 +24,15 @@ describe AvetmissData::ZipFile do
     end
   end
 
+  context 'read zip file with zero-length files' do
+    let!(:zip_file) { AvetmissData::ZipFile.new('spec/fixtures/zip_files/v7/valid_zero_length_files.zip', '7.0')}
+
+    specify { expect(zip_file.stores).not_to be_empty }
+
+    # In this zip file, NAT00020.txt is 0 bytes.
+    specify { expect(zip_file.stores['NAT00020']).to eq([])}
+  end
+
   context '#store_name_for' do
     let(:zip_file) { AvetmissData::ZipFile.new('') }
     specify { expect(zip_file.store_name_for("NAT00010.txt")).to eq("NAT00010") }
