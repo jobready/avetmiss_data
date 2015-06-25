@@ -1,17 +1,8 @@
+require 'codeclimate-test-reporter'
+CodeClimate::TestReporter.start
+
 require 'simplecov'
-SimpleCov.start
-
-require 'coveralls'
-Coveralls.wear!
-
-SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
-  SimpleCov::Formatter::HTMLFormatter,
-   Coveralls::SimpleCov::Formatter,
-]
-
-SimpleCov.configure do
-  add_filter '/spec/'
-end
+SimpleCov.start 'rails'
 
 require 'bundler/setup'
 Bundler.require(:default, :development)

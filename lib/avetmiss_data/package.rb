@@ -59,7 +59,7 @@ class AvetmissData::Package
   end
 
   def unit_of_competency_stores=(list)
-    @unit_of_competency_stores = list
+    @unit_of_competency_stores = initialize_stores_list(list)
   end
 
   def client_stores=(list)
