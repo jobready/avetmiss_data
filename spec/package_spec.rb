@@ -87,4 +87,9 @@ describe AvetmissData::Package do
 
     specify { expect { |b| package.each_store(&b) }.to yield_successive_args(rto_store, client_store) }
   end
+
+  context '#unit_of_competency_stores=' do
+    before { package.unit_of_competency_stores = [] }
+    specify { expect(package.unit_of_competency_stores).to be_a AvetmissData::StoresList }
+  end
 end
