@@ -116,4 +116,15 @@ describe AvetmissData::Stores::Base do
     let(:enrolment_store) { AvetmissData::Stores::V7::Enrolment.new }
     specify { expect(enrolment_store.store_name).to eq('enrolment') }
   end
+
+  context '#[]' do
+    let(:enrolment_store) { AvetmissData::Stores::V7::Enrolment.new(delivery_location_identifier: '1234') }
+    specify { expect(enrolment_store[:delivery_location_identifier]).to eq('1234') }
+  end
+
+  context '#[]=' do
+    let(:enrolment_store) { AvetmissData::Stores::V7::Enrolment.new }
+    before { enrolment_store[:delivery_location_identifier] = '1234' }
+    specify { expect(enrolment_store.delivery_location_identifier).to eq('1234') }
+  end
 end

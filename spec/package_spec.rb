@@ -77,6 +77,18 @@ describe AvetmissData::Package do
     specify { expect(subject).not_to equal(package.enrolment_stores) }
   end
 
+  context '#[]' do
+    let!(:enrolment_store) { AvetmissData::Stores::V7::Enrolment.new }
+    before { package.enrolment_stores << enrolment_store }
+    specify { expect(package[:enrolment_stores]).to include(enrolment_store) }
+  end
+
+  context '#[]=' do
+    let!(:enrolment_store) { AvetmissData::Stores::V7::Enrolment.new }
+    before { package[:enrolment_stores] = [enrolment_store] }
+    specify { expect(package.enrolment_stores).to include(enrolment_store) }
+  end
+
   context '#each_store' do
     let(:client_store) { AvetmissData::Stores::V7::Client.new }
     let(:rto_store) { AvetmissData::Stores::V7::Rto.new }

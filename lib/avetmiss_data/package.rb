@@ -91,6 +91,14 @@ class AvetmissData::Package
     send("#{store_name}_stores")
   end
 
+  def [](attr)
+    send(attr)
+  end
+
+  def []=(attr, value)
+    send("#{attr}=", value)
+  end
+
   def self.from_zip_file(zip_file, attributes={})
     stores = zip_file.stores
     package = AvetmissData::Package.new(attributes)

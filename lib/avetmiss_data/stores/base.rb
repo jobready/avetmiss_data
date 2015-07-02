@@ -33,6 +33,14 @@ class AvetmissData::Stores::Base
     end
   end
 
+  def [](attr)
+    send(attr)
+  end
+
+  def []=(attr, value)
+    send("#{attr}=", value)
+  end
+
   def to_line
     builder.build(attributes)
   end
