@@ -1,6 +1,7 @@
 # This is the overall package.
 class AvetmissData::Package
   FILES_MAP = {
+    submission_stores: "NAT00005",
     rto_stores: "NAT00010",
     rto_delivery_location_stores: "NAT00020",
     course_stores: "NAT00030",
@@ -15,6 +16,7 @@ class AvetmissData::Package
 
   attr_accessor :activity_year
   attr_accessor :organisation_code
+  attr_accessor :submission_stores
   attr_accessor :rto_stores
   attr_accessor :rto_delivery_location_stores
   attr_accessor :course_stores
@@ -28,6 +30,7 @@ class AvetmissData::Package
 
   def initialize(attributes = {})
     self.attributes = attributes
+    self.submission_stores = []
     self.rto_stores = []
     self.rto_delivery_location_stores = []
     self.course_stores = []
@@ -44,6 +47,10 @@ class AvetmissData::Package
     attributes.each_pair do |attr, value|
       send("#{attr}=", value)
     end
+  end
+
+  def submission_stores=(list)
+    @submission_stores = initialize_stores_list(list)
   end
 
   def rto_stores=(list)
@@ -102,6 +109,7 @@ class AvetmissData::Package
   def self.from_zip_file(zip_file, attributes={})
     stores = zip_file.stores
     package = AvetmissData::Package.new(attributes)
+    package.submission_stores = stores["NAT00005"]
     package.rto_stores = stores["NAT00010"]
     package.rto_delivery_location_stores = stores["NAT00020"]
     package.course_stores = stores["NAT00030"]
@@ -125,7 +133,7 @@ class AvetmissData::Package
   end
 
   def each_store(&block)
-    [rto_stores, rto_delivery_location_stores, course_stores, unit_of_competency_stores, client_stores,
+    [submission_stores, rto_stores, rto_delivery_location_stores, course_stores, unit_of_competency_stores, client_stores,
      client_postal_detail_stores, disability_stores, achievement_stores, enrolment_stores,
      qual_completion_stores].each do |stores_list|
        stores_list.each(&block)
