@@ -28,6 +28,7 @@ describe AvetmissData::Package do
     context '7.0' do
       let(:zip_file) { AvetmissData::ZipFile.new('spec/fixtures/zip_files/v7/valid.zip', '7.0') }
 
+      specify { expect(package.submission_stores.length).to eq(1) }
       specify { expect(package.rto_stores.length).to eq(1) }
       specify { expect(package.rto_delivery_location_stores.length).to eq(1) }
       specify { expect(package.course_stores.length).to eq(1) }
