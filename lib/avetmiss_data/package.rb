@@ -1,7 +1,6 @@
 # This is the overall package.
 class AvetmissData::Package
   FILES_MAP = {
-    submission_stores: "NAT00005",
     rto_stores: "NAT00010",
     rto_delivery_location_stores: "NAT00020",
     course_stores: "NAT00030",
@@ -13,6 +12,10 @@ class AvetmissData::Package
     enrolment_stores: "NAT00120",
     qual_completion_stores: "NAT00130"
   }
+
+  AGGREGATE_FILES_MAP = {
+    submission_stores: "NAT00005"
+  }.merge(FILES_MAP)
 
   attr_accessor :activity_year
   attr_accessor :organisation_code
@@ -124,12 +127,11 @@ class AvetmissData::Package
   end
 
   def to_zip_file
-    Zip::Archive.open_buffer(Zip::CREATE) do |archive|
-      FILES_MAP.each_pair do |stores_name, file_name|
-        lines = send(stores_name).map { |store| store.to_line }.join("\n")
-        archive.add_buffer("#{file_name}.txt", lines)
-      end
-    end
+    generate_zip_file(FILES_MAP)
+  end
+
+  def to_aggregate_zip_file
+    generate_zip_file(AGGREGATE_FILES_MAP)
   end
 
   def each_store(&block)
@@ -144,5 +146,14 @@ class AvetmissData::Package
 
   def initialize_stores_list(list)
     AvetmissData::StoresList.new(self, list)
+  end
+
+  def generate_zip_file(files_list)
+    Zip::Archive.open_buffer(Zip::CREATE) do |archive|
+      files_list.each_pair do |stores_name, file_name|
+        lines = send(stores_name).map { |store| store.to_line }.join("\n")
+        archive.add_buffer("#{file_name}.txt", lines)
+      end
+    end
   end
 end

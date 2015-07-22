@@ -22,6 +22,32 @@ describe AvetmissData::Package do
     specify { expect(package.enrolment_stores.first.package).to eq(package) }
   end
 
+  context 'create zip file' do
+    let(:temp_file) { Tempfile.new('package') }
+    let(:zip_file) { AvetmissData::ZipFile.new(temp_file.path) }
+    let(:file_names) { zip_file.stores.keys }
+
+    context 'in standard format' do
+      before do
+        File.open(temp_file.path, 'wb:ASCII-8BIT') { |f| f << package.to_zip_file }
+      end
+
+      it 'contains all standard files for RTO submission' do
+        expect(file_names).to match_array(AvetmissData::Package::FILES_MAP.values)
+      end
+    end
+
+    context 'in aggregate format' do
+      before do
+        File.open(temp_file.path, 'wb:ASCII-8BIT') { |f| f << package.to_aggregate_zip_file }
+      end
+
+      it 'contains standard files plus submission file for STA aggregate submission' do
+        expect(file_names).to match_array(AvetmissData::Package::AGGREGATE_FILES_MAP.values)
+      end
+    end
+  end
+
   context 'load package from zip' do
     let(:package) { AvetmissData::Package.from_zip_file(zip_file) }
 
