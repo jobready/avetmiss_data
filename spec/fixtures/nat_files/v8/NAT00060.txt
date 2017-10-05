@@ -1,0 +1,13 @@
+AE1         Academic English 1                                                                                  000000N0025
+AE2         Academic English 2                                                                                  000000N0025
+BSBCUS402A  Address customer needs                                                                              050105N0000
+CUSMGE13A   Apply music knowledge and artistic judgement                                                        100101N0024
+FNSICACC301BAdminister accounts payable                                                                         080101Y0050
+FNSICGEN304BApply health and safety practices in the workplace                                                  081199Y0025
+FNSICORG301BAdminister fixed asset register                                                                     081199Y0050
+ICAA4041B   Determine and confirm client business expectations and needs                                        000000Y0000
+ICAD4043B   Develop and present a feasibility report                                                            000000Y0000
+ICAS4022B   Determine and action client computing problems                                                      000000Y0000
+ICAS4106B   Action and complete change requests                                                                 080101Y0100
+MJ101       Develop the Moonwalk and other dances                                                               100105Y0012
+PSPGOV204B  Access and use resources                                                                            020109Y0025
