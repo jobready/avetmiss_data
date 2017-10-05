@@ -10,6 +10,9 @@ module AvetmissData
 
     module V7
     end
+
+    module V8
+    end
   end
 end
 
@@ -42,3 +45,5 @@ require 'avetmiss_data/stores/v7/disability'
 require 'avetmiss_data/stores/v7/achievement'
 require 'avetmiss_data/stores/v7/enrolment'
 require 'avetmiss_data/stores/v7/qual_completion'
+require 'avetmiss_data/stores/v8/base'
+require 'avetmiss_data/stores/v8/rto'
