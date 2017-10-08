@@ -115,7 +115,7 @@ class AvetmissData::Package
     package.submission_stores = stores["NAT00005"]
     package.rto_stores = stores["NAT00010"]
     package.rto_delivery_location_stores = stores["NAT00020"]
-    package.course_stores = stores["NAT00030"]
+    package.course_stores = stores["NAT00030"] || stores["NAT00030A"]
     package.unit_of_competency_stores = stores["NAT00060"]
     package.client_stores = stores["NAT00080"]
     package.client_postal_detail_stores = stores["NAT00085"]
