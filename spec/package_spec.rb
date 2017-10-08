@@ -32,8 +32,20 @@ describe AvetmissData::Package do
         File.open(temp_file.path, 'wb:ASCII-8BIT') { |f| f << package.to_zip_file }
       end
 
-      it 'contains all standard files for RTO submission' do
-        expect(file_names).to match_array(AvetmissData::Package::FILES_MAP.values)
+      context 'for a v7 package' do
+        let(:package) { AvetmissData::Package.new(version: :v7) }
+
+        it 'contains all standard files for RTO submission' do
+          expect(file_names).to match_array(AvetmissData::Package::V7_FILES_MAP.values)
+        end
+      end
+
+      context 'for a v8 package' do
+        let(:package) { AvetmissData::Package.new(version: :v8) }
+
+        it 'contains all standard files for RTO submission' do
+          expect(file_names).to match_array(AvetmissData::Package::V8_FILES_MAP.values)
+        end
       end
     end
 
