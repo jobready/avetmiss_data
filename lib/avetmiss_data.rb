@@ -10,9 +10,16 @@ module AvetmissData
 
     module V7
     end
+
+    module V8
+    end
+  end
+
+  module Errors
   end
 end
 
+require 'avetmiss_data/errors/unknown_version_error'
 require 'avetmiss_data/zip_file'
 require 'avetmiss_data/stores_list'
 require 'avetmiss_data/package'
@@ -42,3 +49,14 @@ require 'avetmiss_data/stores/v7/disability'
 require 'avetmiss_data/stores/v7/achievement'
 require 'avetmiss_data/stores/v7/enrolment'
 require 'avetmiss_data/stores/v7/qual_completion'
+require 'avetmiss_data/stores/v8/base'
+require 'avetmiss_data/stores/v8/rto'
+require 'avetmiss_data/stores/v8/unit_of_competency'
+require 'avetmiss_data/stores/v8/client'
+require 'avetmiss_data/stores/v8/client_postal_detail'
+require 'avetmiss_data/stores/v8/enrolment'
+require 'avetmiss_data/stores/v8/qual_completion'
+require 'avetmiss_data/stores/v8/course'
+require 'avetmiss_data/stores/v8/rto_delivery_location'
+require 'avetmiss_data/stores/v8/disability'
+require 'avetmiss_data/stores/v8/achievement'

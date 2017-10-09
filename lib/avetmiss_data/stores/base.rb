@@ -84,6 +84,14 @@ class AvetmissData::Stores::Base
     self.class.v7?
   end
 
+  def self.v8?
+    version == "8.0"
+  end
+
+  def v8?
+    self.class.v8?
+  end
+
   def self.store_name
     self.name.demodulize.underscore
   end

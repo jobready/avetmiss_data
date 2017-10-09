@@ -3,7 +3,6 @@ class AvetmissData::Package
   FILES_MAP = {
     rto_stores: "NAT00010",
     rto_delivery_location_stores: "NAT00020",
-    course_stores: "NAT00030",
     unit_of_competency_stores: "NAT00060",
     client_stores: "NAT00080",
     client_postal_detail_stores: "NAT00085",
@@ -13,9 +12,19 @@ class AvetmissData::Package
     qual_completion_stores: "NAT00130"
   }
 
+  V6_V7_FILES_MAP = {
+    course_stores: "NAT00030",
+  }.merge(FILES_MAP)
+
+  V8_FILES_MAP = {
+    course_stores: "NAT00030A",
+  }.merge(FILES_MAP)
+
   AGGREGATE_FILES_MAP = {
     submission_stores: "NAT00005"
   }.merge(FILES_MAP)
+
+  KNOWN_VERSIONS = [:v6, :v7, :v8]
 
   attr_accessor :activity_year
   attr_accessor :organisation_code
@@ -30,9 +39,11 @@ class AvetmissData::Package
   attr_accessor :achievement_stores
   attr_accessor :enrolment_stores
   attr_accessor :qual_completion_stores
+  attr_accessor :version
 
-  def initialize(attributes = {})
+  def initialize(attributes = {}, version: :v8)
     self.attributes = attributes
+    self.version = version
     self.submission_stores = []
     self.rto_stores = []
     self.rto_delivery_location_stores = []
@@ -115,7 +126,7 @@ class AvetmissData::Package
     package.submission_stores = stores["NAT00005"]
     package.rto_stores = stores["NAT00010"]
     package.rto_delivery_location_stores = stores["NAT00020"]
-    package.course_stores = stores["NAT00030"]
+    package.course_stores = stores["NAT00030"] || stores["NAT00030A"]
     package.unit_of_competency_stores = stores["NAT00060"]
     package.client_stores = stores["NAT00080"]
     package.client_postal_detail_stores = stores["NAT00085"]
@@ -127,7 +138,12 @@ class AvetmissData::Package
   end
 
   def to_zip_file
-    generate_zip_file(FILES_MAP)
+    unless KNOWN_VERSIONS.include?(self.version)
+      raise AvetmissData::Errors::UnknownVersionError, self.version
+    end
+
+    files_map = self.version == :v8 ? V8_FILES_MAP : V6_V7_FILES_MAP
+    generate_zip_file(files_map)
   end
 
   def to_aggregate_zip_file

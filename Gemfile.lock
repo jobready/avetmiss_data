@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    avetmiss_data (1.2.0)
+    avetmiss_data (2.0.0)
       activesupport
       zipruby
 

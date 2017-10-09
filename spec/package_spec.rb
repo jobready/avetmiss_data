@@ -28,12 +28,48 @@ describe AvetmissData::Package do
     let(:file_names) { zip_file.stores.keys }
 
     context 'in standard format' do
-      before do
+      let(:create_zip_file) do
         File.open(temp_file.path, 'wb:ASCII-8BIT') { |f| f << package.to_zip_file }
       end
 
-      it 'contains all standard files for RTO submission' do
-        expect(file_names).to match_array(AvetmissData::Package::FILES_MAP.values)
+      context 'for an unknown package' do
+        let(:package) { AvetmissData::Package.new(version: :v5) }
+        let(:error_msg) { 'Unknown NAT Version: v5' }
+
+        it 'raises an AvetmissData::Errors::UnknownVersionError' do
+          expect{ create_zip_file }.
+            to raise_error(AvetmissData::Errors::UnknownVersionError, error_msg)
+        end
+      end
+
+      context 'for a known package' do
+        before do
+          create_zip_file
+        end
+
+        context 'for a v6 package' do
+          let(:package) { AvetmissData::Package.new(version: :v6) }
+
+          it 'contains all standard files for RTO submission' do
+            expect(file_names).to match_array(AvetmissData::Package::V6_V7_FILES_MAP.values)
+          end
+        end
+
+        context 'for a v7 package' do
+          let(:package) { AvetmissData::Package.new(version: :v7) }
+
+          it 'contains all standard files for RTO submission' do
+            expect(file_names).to match_array(AvetmissData::Package::V6_V7_FILES_MAP.values)
+          end
+        end
+
+        context 'for a v8 package' do
+          let(:package) { AvetmissData::Package.new(version: :v8) }
+
+          it 'contains all standard files for RTO submission' do
+            expect(file_names).to match_array(AvetmissData::Package::V8_FILES_MAP.values)
+          end
+        end
       end
     end
 
@@ -50,6 +86,28 @@ describe AvetmissData::Package do
 
   context 'load package from zip' do
     let(:package) { AvetmissData::Package.from_zip_file(zip_file) }
+
+    context '8.0' do
+      let(:zip_file) { AvetmissData::ZipFile.new('spec/fixtures/zip_files/v8/valid.zip', '8.0') }
+
+      specify { expect(package.rto_stores.length).to eq(1) }
+      specify { expect(package.rto_delivery_location_stores.length).to eq(2) }
+      specify { expect(package.course_stores.length).to eq(1) }
+      specify { expect(package.unit_of_competency_stores.length).to eq(1) }
+      specify { expect(package.client_stores.length).to eq(1) }
+      specify { expect(package.client_postal_detail_stores.length).to eq(1) }
+      specify { expect(package.disability_stores.length).to eq(2) }
+      specify { expect(package.achievement_stores.length).to eq(8) }
+      specify { expect(package.enrolment_stores.length).to eq(1) }
+      specify { expect(package.qual_completion_stores.length).to eq(1) }
+
+      let!(:rto_store) { package.rto_stores.first }
+      specify { expect(rto_store.training_organisation_identifier).to eq('12345') }
+      let!(:enrolment_store) { package.enrolment_stores.first }
+      specify { expect(enrolment_store.unit_competency_identifier).to eq('BSBCUS402A') }
+
+      specify { expect(package.client_stores.first.package).to eq(package) }
+    end
 
     context '7.0' do
       let(:zip_file) { AvetmissData::ZipFile.new('spec/fixtures/zip_files/v7/valid.zip', '7.0') }

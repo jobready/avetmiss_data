@@ -22,6 +22,8 @@ class AvetmissData::ZipFile
       AvetmissData::Stores::V6::Base
     when "7.0"
       AvetmissData::Stores::V7::Base
+    when "8.0"
+      AvetmissData::Stores::V8::Base
     end
   end
 
