@@ -28,19 +28,25 @@ describe AvetmissData::Package do
     let(:file_names) { zip_file.stores.keys }
 
     context 'in standard format' do
-      before do
+      let(:create_zip_file) do
         File.open(temp_file.path, 'wb:ASCII-8BIT') { |f| f << package.to_zip_file }
       end
 
       context 'for an unknown package' do
         let(:package) { AvetmissData::Package.new(version: :v5) }
+        let(:error_msg) { 'Unknown NAT Version: v5' }
 
-        it 'creates an empty zip' do
-          expect(file_names).to be_empty
+        it 'raises an AvetmissData::Errors::UnknownVersionError' do
+          expect{ create_zip_file }.
+            to raise_error(AvetmissData::Errors::UnknownVersionError, error_msg)
         end
       end
 
       context 'for a known package' do
+        before do
+          create_zip_file
+        end
+
         context 'for a v6 package' do
           let(:package) { AvetmissData::Package.new(version: :v6) }
 

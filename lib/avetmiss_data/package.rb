@@ -138,7 +138,10 @@ class AvetmissData::Package
   end
 
   def to_zip_file
-    return unless KNOWN_VERSIONS.include?(self.version)
+    unless KNOWN_VERSIONS.include?(self.version)
+      raise AvetmissData::Errors::UnknownVersionError, self.version
+    end
+
     files_map = self.version == :v8 ? V8_FILES_MAP : V6_V7_FILES_MAP
     generate_zip_file(files_map)
   end

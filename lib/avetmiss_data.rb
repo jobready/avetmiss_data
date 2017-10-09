@@ -14,8 +14,12 @@ module AvetmissData
     module V8
     end
   end
+
+  module Errors
+  end
 end
 
+require 'avetmiss_data/errors/unknown_version_error'
 require 'avetmiss_data/zip_file'
 require 'avetmiss_data/stores_list'
 require 'avetmiss_data/package'
