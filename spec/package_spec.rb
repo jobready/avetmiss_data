@@ -32,19 +32,37 @@ describe AvetmissData::Package do
         File.open(temp_file.path, 'wb:ASCII-8BIT') { |f| f << package.to_zip_file }
       end
 
-      context 'for a v7 package' do
-        let(:package) { AvetmissData::Package.new(version: :v7) }
+      context 'for an unknown package' do
+        let(:package) { AvetmissData::Package.new(version: :v5) }
 
-        it 'contains all standard files for RTO submission' do
-          expect(file_names).to match_array(AvetmissData::Package::V7_FILES_MAP.values)
+        it 'creates an empty zip' do
+          expect(file_names).to be_empty
         end
       end
 
-      context 'for a v8 package' do
-        let(:package) { AvetmissData::Package.new(version: :v8) }
+      context 'for a known package' do
+        context 'for a v6 package' do
+          let(:package) { AvetmissData::Package.new(version: :v6) }
 
-        it 'contains all standard files for RTO submission' do
-          expect(file_names).to match_array(AvetmissData::Package::V8_FILES_MAP.values)
+          it 'contains all standard files for RTO submission' do
+            expect(file_names).to match_array(AvetmissData::Package::V6_V7_FILES_MAP.values)
+          end
+        end
+
+        context 'for a v7 package' do
+          let(:package) { AvetmissData::Package.new(version: :v7) }
+
+          it 'contains all standard files for RTO submission' do
+            expect(file_names).to match_array(AvetmissData::Package::V6_V7_FILES_MAP.values)
+          end
+        end
+
+        context 'for a v8 package' do
+          let(:package) { AvetmissData::Package.new(version: :v8) }
+
+          it 'contains all standard files for RTO submission' do
+            expect(file_names).to match_array(AvetmissData::Package::V8_FILES_MAP.values)
+          end
         end
       end
     end

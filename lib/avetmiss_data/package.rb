@@ -12,7 +12,7 @@ class AvetmissData::Package
     qual_completion_stores: "NAT00130"
   }
 
-  V7_FILES_MAP = {
+  V6_V7_FILES_MAP = {
     course_stores: "NAT00030",
   }.merge(FILES_MAP)
 
@@ -23,6 +23,8 @@ class AvetmissData::Package
   AGGREGATE_FILES_MAP = {
     submission_stores: "NAT00005"
   }.merge(FILES_MAP)
+
+  KNOWN_VERSIONS = [:v6, :v7, :v8]
 
   attr_accessor :activity_year
   attr_accessor :organisation_code
@@ -39,7 +41,7 @@ class AvetmissData::Package
   attr_accessor :qual_completion_stores
   attr_accessor :version
 
-  def initialize(attributes = {}, version: :v7)
+  def initialize(attributes = {}, version: :v8)
     self.attributes = attributes
     self.version = version
     self.submission_stores = []
@@ -136,7 +138,8 @@ class AvetmissData::Package
   end
 
   def to_zip_file
-    files_map = self.version == :v7 ? V7_FILES_MAP : V8_FILES_MAP
+    return unless KNOWN_VERSIONS.include?(self.version)
+    files_map = self.version == :v8 ? V8_FILES_MAP : V6_V7_FILES_MAP
     generate_zip_file(files_map)
   end
 
