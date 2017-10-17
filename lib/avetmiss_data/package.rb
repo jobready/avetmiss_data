@@ -25,6 +25,7 @@ class AvetmissData::Package
   }.merge(FILES_MAP)
 
   KNOWN_VERSIONS = [:v6, :v7, :v8]
+  DEFAULT_VERSION = :v8
 
   attr_accessor :activity_year
   attr_accessor :organisation_code
@@ -41,9 +42,9 @@ class AvetmissData::Package
   attr_accessor :qual_completion_stores
   attr_accessor :version
 
-  def initialize(attributes = {}, version: :v8)
+  def initialize(attributes = {})
+    self.version = attributes.fetch(:version, DEFAULT_VERSION)
     self.attributes = attributes
-    self.version = version
     self.submission_stores = []
     self.rto_stores = []
     self.rto_delivery_location_stores = []

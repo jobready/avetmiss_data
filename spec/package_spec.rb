@@ -3,6 +3,52 @@ require 'spec_helper'
 describe AvetmissData::Package do
   let(:package) { AvetmissData::Package.new }
 
+  describe 'initialize' do
+    context 'when attributes provided' do
+      context 'and version provided' do
+        let(:package) { AvetmissData::Package.new(activity_year: 2014, version: :v7) }
+
+        it 'assigns provided attributes' do
+          expect(package.activity_year).to eq(2014)
+        end
+
+        it 'assigns provided version' do
+          expect(package.version).to eq(:v7)
+        end
+      end
+
+      context 'and version omitted' do
+        let(:package) { AvetmissData::Package.new(activity_year: 2014) }
+
+        it 'assigns provided attributes' do
+          expect(package.activity_year).to eq(2014)
+        end
+
+        it 'uses default version' do
+          expect(package.version).to eq(:v8)
+        end
+      end
+    end
+
+    context 'when attributes omitted' do
+      context 'and version provided' do
+        let(:package) { AvetmissData::Package.new(version: :v7) }
+
+        it 'assigns provided version' do
+          expect(package.version).to eq(:v7)
+        end
+      end
+
+      context 'and version omitted' do
+        let(:package) { AvetmissData::Package.new() }
+
+        it 'uses default version' do
+          expect(package.version).to eq(:v8)
+        end
+      end
+    end
+  end
+
   context '<<' do
     let!(:enrolment_store) { AvetmissData::Stores::V7::Enrolment.new }
     before { package.enrolment_stores << enrolment_store }
