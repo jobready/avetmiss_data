@@ -20,9 +20,9 @@ class AvetmissData::Package
     course_stores: "NAT00030A",
   }.merge(FILES_MAP)
 
-  AGGREGATE_FILES_MAP = {
+  V6_V7_AGGREGATE_FILES_MAP = {
     submission_stores: "NAT00005"
-  }.merge(FILES_MAP)
+  }.merge(V6_V7_FILES_MAP)
 
   KNOWN_VERSIONS = [:v6, :v7, :v8]
   DEFAULT_VERSION = :v8
@@ -148,7 +148,7 @@ class AvetmissData::Package
   end
 
   def to_aggregate_zip_file
-    generate_zip_file(AGGREGATE_FILES_MAP)
+    generate_zip_file(V6_V7_AGGREGATE_FILES_MAP)
   end
 
   def each_store(&block)

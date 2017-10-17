@@ -124,8 +124,13 @@ describe AvetmissData::Package do
         File.open(temp_file.path, 'wb:ASCII-8BIT') { |f| f << package.to_aggregate_zip_file }
       end
 
-      it 'contains standard files plus submission file for STA aggregate submission' do
-        expect(file_names).to match_array(AvetmissData::Package::AGGREGATE_FILES_MAP.values)
+      context 'for a v7 package' do
+        it 'contains each store type' do
+          expect(file_names.count).to eq(11)
+        end
+        it 'contains standard files plus submission file for STA aggregate submission' do
+          expect(file_names).to match_array(AvetmissData::Package::V6_V7_AGGREGATE_FILES_MAP.values)
+        end
       end
     end
   end
