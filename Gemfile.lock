@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    avetmiss_data (2.0.0)
+    avetmiss_data (2.0.2)
       activesupport
       zipruby
 
@@ -57,3 +57,6 @@ DEPENDENCIES
   rake (~> 10.1)
   rspec (~> 2.14)
   simplecov
+
+BUNDLED WITH
+   1.10.6
