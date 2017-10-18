@@ -24,8 +24,8 @@ class AvetmissData::Package
     submission_stores: "NAT00005"
   }.merge(V6_V7_FILES_MAP)
 
-  KNOWN_VERSIONS = [:v6, :v7, :v8]
-  DEFAULT_VERSION = :v8
+  KNOWN_VERSIONS = ['6.1', '7.0', '8.0']
+  DEFAULT_VERSION = '8.0'
 
   attr_accessor :activity_year
   attr_accessor :organisation_code
@@ -143,7 +143,7 @@ class AvetmissData::Package
       raise AvetmissData::Errors::UnknownVersionError, self.version
     end
 
-    files_map = self.version == :v8 ? V8_FILES_MAP : V6_V7_FILES_MAP
+    files_map = self.version == '8.0' ? V8_FILES_MAP : V6_V7_FILES_MAP
     generate_zip_file(files_map)
   end
 
