@@ -6,14 +6,14 @@ describe AvetmissData::Package do
   describe 'initialize' do
     context 'when attributes provided' do
       context 'and version provided' do
-        let(:package) { AvetmissData::Package.new(activity_year: 2014, version: :v7) }
+        let(:package) { AvetmissData::Package.new(activity_year: 2014, version: '7.0') }
 
         it 'assigns provided attributes' do
           expect(package.activity_year).to eq(2014)
         end
 
         it 'assigns provided version' do
-          expect(package.version).to eq(:v7)
+          expect(package.version).to eq('7.0')
         end
       end
 
@@ -25,17 +25,17 @@ describe AvetmissData::Package do
         end
 
         it 'uses default version' do
-          expect(package.version).to eq(:v8)
+          expect(package.version).to eq('8.0')
         end
       end
     end
 
     context 'when attributes omitted' do
       context 'and version provided' do
-        let(:package) { AvetmissData::Package.new(version: :v7) }
+        let(:package) { AvetmissData::Package.new(version: '7.0') }
 
         it 'assigns provided version' do
-          expect(package.version).to eq(:v7)
+          expect(package.version).to eq('7.0')
         end
       end
 
@@ -43,7 +43,7 @@ describe AvetmissData::Package do
         let(:package) { AvetmissData::Package.new() }
 
         it 'uses default version' do
-          expect(package.version).to eq(:v8)
+          expect(package.version).to eq('8.0')
         end
       end
     end
@@ -78,9 +78,9 @@ describe AvetmissData::Package do
         File.open(temp_file.path, 'wb:ASCII-8BIT') { |f| f << package.to_zip_file }
       end
 
-      context 'for an unknown package' do
-        let(:package) { AvetmissData::Package.new(version: :v5) }
-        let(:error_msg) { 'Unknown NAT Version: v5' }
+      context 'for an unknown version' do
+        let(:package) { AvetmissData::Package.new(version: '5.0') }
+        let(:error_msg) { 'Unknown NAT Version: 5.0' }
 
         it 'raises an AvetmissData::Errors::UnknownVersionError' do
           expect{ create_zip_file }.
@@ -88,13 +88,13 @@ describe AvetmissData::Package do
         end
       end
 
-      context 'for a known package' do
+      context 'for a known version' do
         before do
           create_zip_file
         end
 
         context 'for a v6 package' do
-          let(:package) { AvetmissData::Package.new(version: :v6) }
+          let(:package) { AvetmissData::Package.new(version: '6.1') }
 
           it 'contains all standard files for RTO submission' do
             expect(file_names).to match_array(AvetmissData::Package::V6_V7_FILES_MAP.values)
@@ -102,7 +102,7 @@ describe AvetmissData::Package do
         end
 
         context 'for a v7 package' do
-          let(:package) { AvetmissData::Package.new(version: :v7) }
+          let(:package) { AvetmissData::Package.new(version: '7.0') }
 
           it 'contains all standard files for RTO submission' do
             expect(file_names).to match_array(AvetmissData::Package::V6_V7_FILES_MAP.values)
@@ -110,7 +110,7 @@ describe AvetmissData::Package do
         end
 
         context 'for a v8 package' do
-          let(:package) { AvetmissData::Package.new(version: :v8) }
+          let(:package) { AvetmissData::Package.new(version: '8.0') }
 
           it 'contains all standard files for RTO submission' do
             expect(file_names).to match_array(AvetmissData::Package::V8_FILES_MAP.values)
