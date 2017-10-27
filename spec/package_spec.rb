@@ -240,4 +240,34 @@ describe AvetmissData::Package do
     before { package.unit_of_competency_stores = [] }
     specify { expect(package.unit_of_competency_stores).to be_a AvetmissData::StoresList }
   end
+
+  describe '#files_map' do
+    subject { package.files_map }
+
+    let(:package) { AvetmissData::Package.new(version: version) }
+
+    context 'for V8 package' do
+      let(:version) { '8.0' }
+
+      specify do
+        expect(subject).to eq(described_class::V8_FILES_MAP)
+      end
+    end
+
+    context 'for V7 package' do
+      let(:version) { '7.0' }
+
+      specify do
+        expect(subject).to eq(described_class::V6_V7_FILES_MAP)
+      end
+    end
+
+    context 'for V6.1 package' do
+      let(:version) { '6.1' }
+
+      specify do
+        expect(subject).to eq(described_class::V6_V7_FILES_MAP)
+      end
+    end
+  end
 end

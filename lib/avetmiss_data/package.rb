@@ -143,7 +143,6 @@ class AvetmissData::Package
       raise AvetmissData::Errors::UnknownVersionError, self.version
     end
 
-    files_map = self.version == '8.0' ? V8_FILES_MAP : V6_V7_FILES_MAP
     generate_zip_file(files_map)
   end
 
@@ -157,6 +156,15 @@ class AvetmissData::Package
      qual_completion_stores].each do |stores_list|
        stores_list.each(&block)
      end
+  end
+
+  def files_map
+    case version
+    when '8.0'
+      V8_FILES_MAP
+    else
+      V6_V7_FILES_MAP
+    end
   end
 
   private
