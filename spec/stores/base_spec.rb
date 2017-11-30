@@ -71,6 +71,48 @@ describe AvetmissData::Stores::Base do
     end
   end
 
+  context 'package_activity_year' do
+    subject { store.package_activity_year }
+
+    let(:store) { AvetmissData::Stores::V8::Enrolment.new(package: package) }
+
+    context 'where activity_year present on package' do
+      let(:package) { AvetmissData::Package.new(activity_year: 2015) }
+      it { should eq(2015) }
+    end
+
+    context 'where activity_year blank on package' do
+      let(:package) { AvetmissData::Package.new(activity_year: nil) }
+      it { should be_nil }
+    end
+
+    context 'where package does not exist' do
+      let(:store) { AvetmissData::Stores::V8::Enrolment.new }   # can't explicitly pass in package: nil
+      it { should be_nil }
+    end
+  end
+
+  context 'package_organisation_code' do
+    subject { store.package_organisation_code }
+
+    let(:store) { AvetmissData::Stores::V8::Enrolment.new(package: package) }
+
+    context 'where organisation_code present on package' do
+      let(:package) { AvetmissData::Package.new(organisation_code: 2015) }
+      it { should eq(2015) }
+    end
+
+    context 'where organisation_code blank on package' do
+      let(:package) { AvetmissData::Package.new(organisation_code: nil) }
+      it { should be_nil }
+    end
+
+    context 'where package does not exist' do
+      let(:store) { AvetmissData::Stores::V8::Enrolment.new }   # can't explicitly pass in package: nil
+      it { should be_nil }
+    end
+  end
+
   context '#package=' do
     let(:enrolment_store) { AvetmissData::Stores::V7::Enrolment.new }
     let(:package) { AvetmissData::Package.new }

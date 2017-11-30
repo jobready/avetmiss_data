@@ -3,6 +3,8 @@ class AvetmissData::Stores::Base
   class_attribute :file_name, :parser, :builder, :attribute_names
   attr_accessor :line_number, :package
 
+  delegate :activity_year, :organisation_code, to: :package, prefix: true, allow_nil: true
+
   def self.nat_file(file_name, mapping)
     self.file_name = file_name
     self.parser = AvetmissData::Parser.new(mapping)
