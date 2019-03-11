@@ -139,11 +139,11 @@ describe AvetmissData::Stores::Base do
       rto_delivery_location_store2.package = package
     end
 
-    specify { expect(rto_delivery_location_store.rto_store_exists?).to be_true }
+    specify { expect(rto_delivery_location_store.rto_store_exists?).to be_truthy }
     specify { expect(rto_delivery_location_store.rto_store).to eq(rto_store) }
     specify { expect(rto_store.rto_store).to eq(rto_store) }
     specify { expect(rto_delivery_location_store.rto_delivery_location_store).to eq(rto_delivery_location_store) }
-    specify { expect(rto_delivery_location_store2.rto_store_exists?).to be_false }
+    specify { expect(rto_delivery_location_store2.rto_store_exists?).to be_falsey }
     specify { expect(rto_delivery_location_store2.rto_store).to be_nil }
     specify { expect(rto_delivery_location_store2.rto_delivery_location_store).to eq(rto_delivery_location_store2) }
 
