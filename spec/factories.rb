@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   trait :has_record_init do
     initialize_with { new(attributes.key?(:attributes) ? attributes.delete(:attributes) : {}) }
   end
